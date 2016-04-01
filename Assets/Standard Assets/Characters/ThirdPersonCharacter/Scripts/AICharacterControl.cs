@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using System;
 
 namespace UnityStandardAssets.Characters.ThirdPerson
 {
@@ -38,21 +38,47 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //tanken är att den ska kolla om spotted blir true inne i playermovement scriptet
             //Denna raycasten nedanför är bara fiendens synfält
 
-            Vector3 fwd = transform.TransformDirection(Vector3.forward);
-            if (Physics.Raycast(transform.position, fwd, 10))
+            //Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            //if (Physics.Raycast(transform.position, fwd, 10))
+            //{
+            //    agent.enabled = true;
+            //    print("he saw ya");
+
+            //}
+
+
+            if (CanSeePlayer() == true)
             {
                 agent.enabled = true;
                 print("he saw ya");
-
             }
-
-
-            //if (agent.remainingDistance > agent.stoppingDistance)
-            //    character.Move(agent.desiredVelocity, false, false);
-            //else
-            //    character.Move(Vector3.zero, false, false);
         }
 
+        bool CanSeePlayer()
+        {
+            Vector3 startVec = transform.position;
+            Vector3 startVecFwd = transform.forward;
+
+            RaycastHit hit;
+            Vector3 rayDirection = target.transform.position - startVec;
+
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < 110 && (Vector3.Distance(startVec, target.transform.position) <= 20f))
+            {
+                return true;
+            }
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < 90 && Physics.Raycast(startVec, rayDirection, out hit, 100f))
+            {
+                if (hit.collider.gameObject == target)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
 
         public void SetTarget(Transform target)
         {

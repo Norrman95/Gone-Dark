@@ -10,15 +10,32 @@ public class playermovement : MonoBehaviour
     public Transform shotSpawn;
     public float fireRate;
     private float nextFire;
+    public  bool spotted = false;
+
+    
+    
+
+
     // Use this for initialization
     void Start()
     {
-
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //En raycast som kollar framför spelaren
+
+        //Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        //if (Physics.Raycast(transform.position, fwd, 10))
+        //{
+        //    spotted = true;
+        //    print("spotted");
+
+        //}
+
 
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {

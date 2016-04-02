@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class playermovement : MonoBehaviour
+
 {
+
     public float moveSpeed;
     private Vector3 input;
     private float maxSpeed = 5f;
@@ -12,15 +14,16 @@ public class playermovement : MonoBehaviour
     private float nextFire;
     public  bool spotted = false;
 
-    
-    
+   
+
+
 
 
     // Use this for initialization
     void Start()
     {
         
-        
+
     }
 
     // Update is called once per frame
@@ -31,7 +34,7 @@ public class playermovement : MonoBehaviour
         //Vector3 fwd = transform.TransformDirection(Vector3.forward);
         //if (Physics.Raycast(transform.position, fwd, 10))
         //{
-        //    spotted = true;
+        //    agent.enabled = true;
         //    print("spotted");
 
         //}

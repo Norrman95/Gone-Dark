@@ -5,14 +5,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(ThirdPersonCharacter))]
+    
     public class AICharacterControl : MonoBehaviour
     {
         public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
         public Transform target;
-                                    // target to aim for
+        // target to aim for
 
-            
+        
 
         private void Start()
         {
@@ -25,7 +26,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
 
             
-            
+
         }
 
 
@@ -34,7 +35,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (target != null)
                 agent.SetDestination(target.position);
 
-            //if (GameObject.Find("Player").GetComponent<playermovement>().spotted)
+           // if (GameObject.Find("Player").GetComponent<playermovement>().spotted)
             //tanken är att den ska kolla om spotted blir true inne i playermovement scriptet
             //Denna raycasten nedanför är bara fiendens synfält
 
@@ -62,20 +63,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             RaycastHit hit;
             Vector3 rayDirection = target.transform.position - startVec;
 
-            if ((Vector3.Angle(rayDirection, startVecFwd)) < 110 && (Vector3.Distance(startVec, target.transform.position) <= 20f))
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < 90 && (Vector3.Distance(startVec, target.transform.position) <= 20f))
             {
                 return true;
             }
-            if ((Vector3.Angle(rayDirection, startVecFwd)) < 90 && Physics.Raycast(startVec, rayDirection, out hit, 100f))
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < 360 && (Vector3.Distance(startVec, target.transform.position) <= 5f))
             {
-                if (hit.collider.gameObject == target)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
             return false;
         }

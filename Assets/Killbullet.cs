@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Killbullet : MonoBehaviour {
 
+    
+
     void OnTriggerEnter(Collider other)
     {
 

@@ -8,7 +8,7 @@ public class Mover : MonoBehaviour {
 
 	void Start()
     {
-        Cursor.visible = false;
+        //Cursor.visible = false;
 
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward *speed;

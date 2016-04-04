@@ -4,7 +4,6 @@ using System.Collections;
 
 
 public class playermovement : MonoBehaviour
-
 {
 
     public float moveSpeed;
@@ -14,7 +13,7 @@ public class playermovement : MonoBehaviour
     public Transform shotSpawn;
     public float fireRate;
     private float nextFire;
-    public  bool spotted = false;
+    public bool spotted = false;
 
 
     //UnityStandardAssets.Characters.ThirdPerson.AICharacterControl Enemy = new UnityStandardAssets.Characters.ThirdPerson.AICharacterControl();  
@@ -27,19 +26,16 @@ public class playermovement : MonoBehaviour
     {
     }
 
-  
+
     // Update is called once per frame
     void Update()
     {
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(cameraRay, out camerarayhit))
+        if (Physics.Raycast(cameraRay, out camerarayhit))
         {
-            if (camerarayhit.transform.tag == "Ground");
-            {
-                Vector3 targetPos = new Vector3(camerarayhit.point.x, transform.position.y, camerarayhit.point.z);
-                transform.LookAt(targetPos);
-            }
+            Vector3 targetPos = new Vector3(camerarayhit.point.x, transform.position.y, camerarayhit.point.z);
+            transform.LookAt(targetPos);
         }
         //En raycast som kollar framför spelaren
 

@@ -79,7 +79,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                         return true;
                     else
                         return false;
-
                 }
             return false;
         }

@@ -5,15 +5,16 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 {
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(ThirdPersonCharacter))]
-    
+
     public class AICharacterControl : MonoBehaviour
     {
         public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
         public Transform target;
         // target to aim for
+        public static float Sight_Width;
+        public static float Sight_Range;
 
-        
 
         private void Start()
         {
@@ -25,7 +26,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             agent.updatePosition = true;
 
 
-            
+            Sight_Range = 25;
+            Sight_Width = 90;
+
 
         }
 
@@ -35,7 +38,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (target != null)
                 agent.SetDestination(target.position);
 
-           // if (GameObject.Find("Player").GetComponent<playermovement>().spotted)
+            // if (GameObject.Find("Player").GetComponent<playermovement>().spotted)
             //tanken är att den ska kolla om spotted blir true inne i playermovement scriptet
             //Denna raycasten nedanför är bara fiendens synfält
 
@@ -51,7 +54,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (CanSeePlayer() == true)
             {
                 agent.enabled = true;
-                print("he saw ya");
+                //print("he saw ya");
             }
         }
 
@@ -62,15 +65,22 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
             RaycastHit hit;
             Vector3 rayDirection = target.transform.position - startVec;
+            Debug.DrawRay(transform.position, rayDirection);
 
-            if ((Vector3.Angle(rayDirection, startVecFwd)) < 90 && (Vector3.Distance(startVec, target.transform.position) <= 20f))
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < 360 && (Vector3.Distance(startVec, target.transform.position) <= 5))
             {
                 return true;
             }
-            if ((Vector3.Angle(rayDirection, startVecFwd)) < 360 && (Vector3.Distance(startVec, target.transform.position) <= 5f))
-            {
-                return true;
-            }
+
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < Sight_Width && (Vector3.Distance(startVec, target.transform.position) <= Sight_Range))
+                if (Physics.Raycast(startVec, rayDirection, out hit, 100f))
+                {
+                    if (hit.transform.tag == "Player")
+                        return true;
+                    else
+                        return false;
+
+                }
             return false;
         }
 

@@ -45,10 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\EnemyHP.cs" />
+     <Compile Include="Assets\Flashlight.cs" />
      <Compile Include="Assets\Killbullet.cs" />
      <Compile Include="Assets\Mover.cs" />
      <Compile Include="Assets\Prefabs\KillEnemy.cs" />
-     <Compile Include="Assets\Properties.cs" />
      <Compile Include="Assets\scriots\camerafollow.cs" />
      <Compile Include="Assets\scriots\playermovement.cs" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />

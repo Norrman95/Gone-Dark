@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class playermovement : MonoBehaviour
 
 {
@@ -14,21 +16,31 @@ public class playermovement : MonoBehaviour
     private float nextFire;
     public  bool spotted = false;
 
-   
 
-
+    //UnityStandardAssets.Characters.ThirdPerson.AICharacterControl Enemy = new UnityStandardAssets.Characters.ThirdPerson.AICharacterControl();  
+    Ray cameraRay;
+    RaycastHit camerarayhit;
 
 
     // Use this for initialization
     void Start()
     {
-        
-
     }
 
+  
     // Update is called once per frame
     void Update()
     {
+        cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if(Physics.Raycast(cameraRay, out camerarayhit))
+        {
+            if (camerarayhit.transform.tag == "Ground");
+            {
+                Vector3 targetPos = new Vector3(camerarayhit.point.x, transform.position.y, camerarayhit.point.z);
+                transform.LookAt(targetPos);
+            }
+        }
         //En raycast som kollar framför spelaren
 
         //Vector3 fwd = transform.TransformDirection(Vector3.forward);
@@ -38,7 +50,6 @@ public class playermovement : MonoBehaviour
         //    print("spotted");
 
         //}
-
 
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
@@ -54,11 +65,11 @@ public class playermovement : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(input * moveSpeed);
         }
 
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Camera.main.nearClipPlane;
-        Vector3 MS = Camera.main.ScreenToWorldPoint(mousePos);
-        MS.y = transform.position.y;
-        transform.LookAt(MS);
+        //Vector3 mousePos = Input.mousePosition;
+        //mousePos.z = Camera.main.nearClipPlane;
+        //Vector3 MS = Camera.main.ScreenToWorldPoint(mousePos);
+        //MS.y = transform.position.y;
+        //transform.LookAt(MS);
 
     }
 }

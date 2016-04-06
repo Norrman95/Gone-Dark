@@ -18,8 +18,7 @@ public class playermovement : MonoBehaviour
 
 
     //UnityStandardAssets.Characters.ThirdPerson.AICharacterControl Enemy = new UnityStandardAssets.Characters.ThirdPerson.AICharacterControl();  
-    Ray cameraRay;
-    RaycastHit camerarayhit;
+   
 
 
     // Use this for initialization
@@ -31,16 +30,7 @@ public class playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if(Physics.Raycast(cameraRay, out camerarayhit))
-        {
-            if (camerarayhit.transform.tag == "Ground");
-            {
-                Vector3 targetPos = new Vector3(camerarayhit.point.x, transform.position.y, camerarayhit.point.z);
-                transform.LookAt(targetPos);
-            }
-        }
+       
         //En raycast som kollar framför spelaren
 
         //Vector3 fwd = transform.TransformDirection(Vector3.forward);
@@ -51,6 +41,7 @@ public class playermovement : MonoBehaviour
 
         //}
 
+      
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;

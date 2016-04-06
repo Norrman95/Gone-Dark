@@ -23,31 +23,47 @@ public class animationStatesSwitch : MonoBehaviour {
             break;
         }
 
-        while (angle < 80 && angle > 60)
+        while (angle < 80 && angle > 30)
         {
             anim.Play("Halv-Side");
             break;
         }
 
-        while (angle < 60 && angle > 25)
+        while (angle < 30 && angle > 0)
         {
             anim.Play("Side");
             break;
         }
 
-        while (angle < 25 && angle > -25)
+        while (angle < 0 && angle > -25)
         {
             anim.Play("Halv-Front");
             break;
         }
 
-        while (angle < -25 && angle > -80)
+        while (angle < -25 && angle > -110)
         {
             anim.Play("Front");
             break;
         }
-       
-    
+
+        while (angle < -110 && angle > -140)
+        {
+            anim.Play("Flipped Halv-Front");
+            break;
+        }
+
+        while (angle < -140 && angle > -170)
+        {
+            anim.Play("Flipped Side");
+            break;
+        }
+
+        while (angle < 170 && angle > 110)
+        {
+            anim.Play("Flipped Halv-Side");
+            break;
+        }
 
 
 	}

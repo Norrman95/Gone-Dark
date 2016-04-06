@@ -29,17 +29,15 @@ public class playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-       
-=======
-        cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(cameraRay, out camerarayhit))
-        {
-            Vector3 targetPos = new Vector3(camerarayhit.point.x, transform.position.y, camerarayhit.point.z);
-            transform.LookAt(targetPos);
-        }
->>>>>>> origin/master
+        //cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        //if (Physics.Raycast(cameraRay, out camerarayhit))
+        //{
+        //    Vector3 targetPos = new Vector3(camerarayhit.point.x, transform.position.y, camerarayhit.point.z);
+        //    transform.LookAt(targetPos);
+        //}
+
         //En raycast som kollar framför spelaren
 
         //Vector3 fwd = transform.TransformDirection(Vector3.forward);

@@ -8,7 +8,7 @@ public class playermovement : MonoBehaviour
 
     public float moveSpeed;
     private Vector3 input;
-    private float maxSpeed = 5f;
+    private float maxSpeed;
     public GameObject shot;
     public Transform shotSpawn;
     public float fireRate;
@@ -17,7 +17,7 @@ public class playermovement : MonoBehaviour
 
 
     //UnityStandardAssets.Characters.ThirdPerson.AICharacterControl Enemy = new UnityStandardAssets.Characters.ThirdPerson.AICharacterControl();  
-   
+
 
 
     // Use this for initialization
@@ -46,9 +46,17 @@ public class playermovement : MonoBehaviour
         //    agent.enabled = true;
         //    print("spotted");
 
-        //}
+        ////}
+        if (Input.GetButton("Sprint"))
+        {
+            maxSpeed = 25f;
+        }
+        else
+        {
+            maxSpeed = 5f;
+        }
 
-      
+
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;

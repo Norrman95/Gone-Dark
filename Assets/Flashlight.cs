@@ -4,7 +4,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Flashlight : MonoBehaviour {
 
-	// Use this for initialization
+
 
   
     public GameObject goPlayer;

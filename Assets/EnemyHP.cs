@@ -13,7 +13,7 @@ public class EnemyHP : MonoBehaviour {
     public void AdjustHealth(int newHp)
     {
         currentHp += newHp;
-        print(currentHp);
+        
     }
 	
 	// Update is called once per frame

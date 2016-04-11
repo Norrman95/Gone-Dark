@@ -15,7 +15,7 @@ public class animationStatesSwitch : MonoBehaviour {
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         Vector3 dir = Input.mousePosition - pos;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        Debug.Log(angle);
+       // Debug.Log(angle);
 
         while (angle < 110 && angle > 80)
         {

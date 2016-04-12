@@ -74,3 +74,5 @@ $RECYCLE.BIN/
 #Build skit
 *.player_win_x86
 *.player_win_x86_s
+*.Gone Dark_Data
+*.testbuild_Data

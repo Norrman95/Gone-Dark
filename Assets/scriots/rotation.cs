@@ -21,14 +21,14 @@ public class rotation : MonoBehaviour {
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 
-        if(Physics.Raycast(cameraRay, out camerarayhit))
+        if(Physics.Raycast(cameraRay, out camerarayhit,Mathf.Infinity, 1<<8))
         {
-            //if (camerarayhit.transform.tag == "Ground")
-            //{
+            if (camerarayhit.transform.tag == "RaycastCube")
+            {
 
                 Vector3 targetPos = new Vector3(camerarayhit.point.x, transform.position.y, camerarayhit.point.z);
                 transform.LookAt(targetPos);
-            //}
+            }
         }
 	
 	}

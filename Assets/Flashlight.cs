@@ -10,7 +10,7 @@ public class Flashlight : MonoBehaviour {
     public GameObject goPlayer;
 
     Ray cameraRay;
-    RaycastHit camerarayhit;
+    RaycastHit camerarayhit, hit;
 	void Start () 
     {
         Ray lightdirection = new Ray(transform.position, Vector3.forward * 30);
@@ -25,30 +25,44 @@ public class Flashlight : MonoBehaviour {
 
     void CanSeePlayer()
     {
-        Vector3 startVec = transform.position;
-        Vector3 startVecFwd = transform.forward;
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        
+        Quaternion spreadAngle = Quaternion.AngleAxis(-15, new Vector3(0, 1, 0));
+        Quaternion spreadAngle2 = Quaternion.AngleAxis(15, new Vector3(0, 1, 0));
+        Quaternion spreadAngle3 = Quaternion.AngleAxis(-30, new Vector3(0, 1, 0));
+        Quaternion spreadAngle4 = Quaternion.AngleAxis(30, new Vector3(0, 1, 0));
+        
+        Vector3 newVector = spreadAngle * fwd;
+        Vector3 newVector2 = spreadAngle2 * fwd;
+        Vector3 newVector3 = spreadAngle3 * fwd;
+        Vector3 newVector4 = spreadAngle4 * fwd;
 
-        RaycastHit hit;
-        Vector3 rayDirection = transform.position - startVec;
+        Ray ray = new Ray(transform.position, newVector);
 
-        if ((Vector3.Angle(rayDirection, startVecFwd)) < 90 && (Vector3.Distance(startVec, transform.position) <= 5))
-            if (Physics.Raycast(startVec, rayDirection, out hit, 100f))
+        Debug.DrawRay(transform.position, fwd * 15);
+        Debug.DrawRay(transform.position, spreadAngle * fwd * 15);
+        Debug.DrawRay(transform.position, spreadAngle2 * fwd * 15);
+        Debug.DrawRay(transform.position, spreadAngle3 * fwd * 15);
+        Debug.DrawRay(transform.position, spreadAngle4 * fwd * 15);
+
+        if (Physics.Raycast(transform.position, fwd, out hit, 15) || Physics.Raycast(transform.position, newVector, out hit, 15) || Physics.Raycast(transform.position, newVector2, out hit, 15) || Physics.Raycast(transform.position, newVector3, out hit, 15) || Physics.Raycast(transform.position, newVector4, out hit, 15))
+        {
+            if (hit.transform.tag == "Enemy")
             {
-                if (hit.transform.tag == "Enemy")
-                    print("I saw him");
-                    increaseRange();
+                print("There is something in front of the object!");
             }
+        }
     }
+
 	// Update is called once per frame
 	void Update () 
     {
-
+        CanSeePlayer();
 
     
                  
 
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(transform.position, transform.forward * 30);
 
         if (Physics.Raycast(cameraRay, out camerarayhit))
         {

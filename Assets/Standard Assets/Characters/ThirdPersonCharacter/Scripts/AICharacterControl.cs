@@ -51,11 +51,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             //}
 
 
-            if (CanSeePlayer() == true)
-            {
-                agent.enabled = true;
-                //print("he saw ya");
-            }
+            //if (CanSeePlayer() == true)
+            //{
+            //    agent.enabled = true;
+            //    //print("he saw ya");
+            //}
         }
 
         bool CanSeePlayer()

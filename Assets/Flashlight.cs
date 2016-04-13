@@ -1,25 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Flashlight : MonoBehaviour {
 
+
+
+  
     public GameObject goPlayer;
 
     Ray cameraRay;
-    RaycastHit camerarayhit, hit;
+    RaycastHit camerarayhit;
 	void Start () 
     {
         Ray lightdirection = new Ray(transform.position, Vector3.forward * 30);
 
      
 	}
-    
-    
 
 	// Update is called once per frame
 	void Update () 
     {
+
+
+    
+                 
+
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Debug.DrawRay(transform.position, transform.forward * 30);
 
         if (Physics.Raycast(cameraRay, out camerarayhit))
         {

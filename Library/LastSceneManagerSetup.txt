@@ -1,4 +1,5 @@
 sceneSetups:
-- path: Assets/block scenes.unity
+- path: C:/Users/filip_000/Desktop/Gone-Dark-d3bc16e3a59ab8748c6cf1d6e6ef537c37601984/Assets/block
+    scenes.unity
   isLoaded: 1
   isActive: 1

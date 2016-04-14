@@ -55,13 +55,12 @@
      <Compile Include="Assets\PlayerHP.cs" />
      <Compile Include="Assets\Prefabs\KillEnemy.cs" />
      <Compile Include="Assets\Prefabs\KillPlayer.cs" />
-     <Compile Include="Assets\Weapon.cs" />
      <Compile Include="Assets\animationStatesSwitch.cs" />
      <Compile Include="Assets\mosueradians.cs" />
      <Compile Include="Assets\pause.cs" />
+     <Compile Include="Assets\scriots\PlayerControls.cs" />
      <Compile Include="Assets\scriots\animator.cs" />
      <Compile Include="Assets\scriots\camerafollow.cs" />
-     <Compile Include="Assets\scriots\playermovement.cs" />
      <Compile Include="Assets\scriots\rotation.cs" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

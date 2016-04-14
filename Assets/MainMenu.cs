@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour {
         {
             if(GUI.Button(new Rect(10, Screen.height/ 2 - 100, 150, 25),"New Game"))
             {
-                SceneManager.LoadScene("block scenes");  
+                SceneManager.LoadScene("intro scene");  
             
             }
 

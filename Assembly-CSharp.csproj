@@ -55,6 +55,7 @@
      <Compile Include="Assets\PlayerHP.cs" />
      <Compile Include="Assets\Prefabs\KillEnemy.cs" />
      <Compile Include="Assets\Prefabs\KillPlayer.cs" />
+     <Compile Include="Assets\ToLevelOne.cs" />
      <Compile Include="Assets\animationStatesSwitch.cs" />
      <Compile Include="Assets\mosueradians.cs" />
      <Compile Include="Assets\pause.cs" />

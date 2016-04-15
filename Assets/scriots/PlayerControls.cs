@@ -34,17 +34,20 @@ public class PlayerControls : MonoBehaviour
             }
             if (shotgun)
             {
-                Quaternion Angle1 = (Quaternion.AngleAxis(10, new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle2 = (Quaternion.AngleAxis(20, new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle3 = (Quaternion.AngleAxis(-10, new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle4 = (Quaternion.AngleAxis(-20, new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+
+
+                Quaternion Angle1 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle2 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle3 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle4 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle5 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
 
                 nextFire = Time.time + fireRate;
                 Instantiate(shot, shotSpawn.position, Angle1);
                 Instantiate(shot, shotSpawn.position, Angle2);
                 Instantiate(shot, shotSpawn.position, Angle3);
                 Instantiate(shot, shotSpawn.position, Angle4);
-                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                Instantiate(shot, shotSpawn.position, Angle5);
             }
             if (axe)
             {

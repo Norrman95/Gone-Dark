@@ -32,23 +32,23 @@ public class MainMenu : MonoBehaviour {
     {
         if(firstMenu)
         {
-            if(GUI.Button(new Rect(10, Screen.height/ 2 - 100, 150, 25),"New Game"))
+            if(GUI.Button(new Rect(875, Screen.height/ 2 - 120, 150, 25),"New Game"))
             {
                 SceneManager.LoadScene("intro scene");  
             
             }
 
-            if (GUI.Button(new Rect(10, Screen.height / 2 - 75, 150, 25), "Load Game"))
+            if (GUI.Button(new Rect(875, Screen.height / 2 - 75, 150, 25), "Load Game"))
             {
 
             }
 
-            if (GUI.Button(new Rect(10, Screen.height / 2 - 50, 150, 25), "Settings"))
+            if (GUI.Button(new Rect(875, Screen.height / 2 - 50, 150, 25), "Settings"))
             {
 
             }
 
-            if (GUI.Button(new Rect(10, Screen.height / 2 - 25, 150, 25), "Quit Game"))
+            if (GUI.Button(new Rect(875, Screen.height / 2 - 25, 150, 25), "Quit Game"))
             {
                 Application.Quit();
             }

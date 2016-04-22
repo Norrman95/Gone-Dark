@@ -26,7 +26,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             agent.updatePosition = true;
 
 
-            Sight_Range = 25;
+            Sight_Range = 5;
             Sight_Width = 90;
 
 
@@ -38,11 +38,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             if (target != null)
                 agent.SetDestination(target.position);
 
-            //if (CanSeePlayer() == true)
-            //{
-            //    agent.enabled = true;
-            //    //print("he saw ya");
-            //}
+            if (CanSeePlayer() == true)
+            {
+                agent.enabled = true;
+                print("he saw ya");
+            }
         }
 
         bool CanSeePlayer()

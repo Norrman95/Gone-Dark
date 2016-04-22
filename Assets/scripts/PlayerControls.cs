@@ -15,27 +15,70 @@ public class PlayerControls : MonoBehaviour
     private float nextFire;
 
     public bool pistol, shotgun, axe;
+    public int pistolMag, totalshotgunAmmo;
+    public int currentpistolAmmo, currentshotgunAmmo;
 
+    void Start()
+    {
+        pistolMag = 4;
+        totalshotgunAmmo = 20;
+        currentpistolAmmo = 8;
+        currentshotgunAmmo = 2;
+    }
     void Update()
     {
+        Debug.Log(totalshotgunAmmo);
+        Reload();
         PlayerMovement();
         Fire();
         Swapweapons();
     }
 
+    void Reload()
+    {
+        if (Input.GetButtonDown("Reload"))
+        {
+            if(pistol && currentpistolAmmo < 8 && pistolMag >= 1)
+            {
+                pistolMag -= 1;
+                currentpistolAmmo = 8;
+            }
+            if(shotgun && totalshotgunAmmo >= 1)
+            {
+                if(totalshotgunAmmo == 1)
+                {
+                    totalshotgunAmmo -= 1;
+                    currentshotgunAmmo = 1;
+                    return;
+                }
+                if(currentshotgunAmmo == 1)
+                {
+                    totalshotgunAmmo -= 1;
+                    currentshotgunAmmo = 2;
+                }
+                if(currentshotgunAmmo == 0)
+                {
+                    totalshotgunAmmo -= 2;
+                    currentshotgunAmmo = 2;
+                }
+            }
+        }
+
+
+    }
     void Fire()
     {
-        if (Input.GetButton("Fire") && Time.time > nextFire)
+        if (Input.GetButtonDown("Fire") && Time.time > nextFire)
         {
-            if (pistol)
+            if (pistol && currentpistolAmmo >= 1)
             {
                 nextFire = Time.time + fireRate;
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+                
+                currentpistolAmmo -= 1;
             }
-            if (shotgun)
+            if (shotgun && currentshotgunAmmo >= 1)
             {
-
-
                 Quaternion Angle1 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
                 Quaternion Angle2 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
                 Quaternion Angle3 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
@@ -48,6 +91,8 @@ public class PlayerControls : MonoBehaviour
                 Instantiate(shot, shotSpawn.position, Angle3);
                 Instantiate(shot, shotSpawn.position, Angle4);
                 Instantiate(shot, shotSpawn.position, Angle5);
+
+                currentshotgunAmmo -= 1;
             }
             if (axe)
             {

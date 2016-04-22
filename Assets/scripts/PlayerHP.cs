@@ -4,9 +4,13 @@ using System.Collections;
 public class PlayerHP : MonoBehaviour
 {
 
-    public int currentHP;
+    public int currentHP, maxHP;
+    
 
-
+    public void Start()
+    {
+        currentHP = maxHP;
+    }
 
     public void AdjustHP(int newHP)
     {
@@ -17,6 +21,9 @@ public class PlayerHP : MonoBehaviour
 
     void Update()
     {
-        
+        if(currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
     }
 }

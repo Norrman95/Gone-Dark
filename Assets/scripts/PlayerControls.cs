@@ -14,6 +14,8 @@ public class PlayerControls : MonoBehaviour
     public float fireRate;
     private float nextFire;
 
+    bool Reloading = false;
+
     public bool pistol, shotgun, axe;
     public int pistolMag, totalshotgunAmmo;
     public int currentpistolAmmo, currentshotgunAmmo;
@@ -27,45 +29,64 @@ public class PlayerControls : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(totalshotgunAmmo);
-        Reload();
+        executeReload();
         PlayerMovement();
         Fire();
         Swapweapons();
     }
 
-    void Reload()
+    private void executeReload()
     {
         if (Input.GetButtonDown("Reload"))
         {
-            if(pistol && currentpistolAmmo < 8 && pistolMag >= 1)
+            StartCoroutine(Wait(2));
+        }
+    }
+
+    private IEnumerator Wait(float seconds)
+    {
+        if(pistol)
+        currentpistolAmmo = 0;
+
+        if(shotgun)
+        currentshotgunAmmo = 0;
+
+        yield return new WaitForSeconds(seconds);
+        Reload();
+        Debug.Log("Fuck You");
+    }
+
+    void Reload()
+    {
+        if (pistol && currentpistolAmmo < 8 && pistolMag >= 1)
+        {
+            
+            pistolMag -= 1;
+            currentpistolAmmo = 8;
+        }
+        if (shotgun && totalshotgunAmmo >= 1)
+        {
+            if (totalshotgunAmmo == 1)
             {
-                pistolMag -= 1;
-                currentpistolAmmo = 8;
+                totalshotgunAmmo -= 1;
+                currentshotgunAmmo = 1;
+                return;
             }
-            if(shotgun && totalshotgunAmmo >= 1)
+            if (currentshotgunAmmo == 1)
             {
-                if(totalshotgunAmmo == 1)
-                {
-                    totalshotgunAmmo -= 1;
-                    currentshotgunAmmo = 1;
-                    return;
-                }
-                if(currentshotgunAmmo == 1)
-                {
-                    totalshotgunAmmo -= 1;
-                    currentshotgunAmmo = 2;
-                }
-                if(currentshotgunAmmo == 0)
-                {
-                    totalshotgunAmmo -= 2;
-                    currentshotgunAmmo = 2;
-                }
+                totalshotgunAmmo -= 1;
+                currentshotgunAmmo = 2;
+            }
+            if (currentshotgunAmmo == 0)
+            {
+                totalshotgunAmmo -= 2;
+                currentshotgunAmmo = 2;
             }
         }
-
-
     }
+
+
+
     void Fire()
     {
         if (Input.GetButtonDown("Fire") && Time.time > nextFire)
@@ -74,7 +95,7 @@ public class PlayerControls : MonoBehaviour
             {
                 nextFire = Time.time + fireRate;
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                
+
                 currentpistolAmmo -= 1;
             }
             if (shotgun && currentshotgunAmmo >= 1)

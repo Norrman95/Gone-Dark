@@ -47,7 +47,10 @@
   <ItemGroup>
      <Compile Include="Assets\Prefabs\KillEnemy.cs" />
      <Compile Include="Assets\Prefabs\KillPlayer.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\levelone.cs" />
+=======
+>>>>>>> origin/master
      <Compile Include="Assets\scripts\EnemyAggro.cs" />
      <Compile Include="Assets\scripts\EnemyHP.cs" />
      <Compile Include="Assets\scripts\Flashlight.cs" />

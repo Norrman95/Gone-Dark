@@ -21,16 +21,8 @@ public class PlayerControls : MonoBehaviour
     public int currentpistolAmmo, currentshotgunAmmo;
     public bool carriesPistol, carriesShotgun, carriesAxe;
 
-    void Start()
-    {
-        pistolMag = 4;
-        totalshotgunAmmo = 20;
-        currentpistolAmmo = 8;
-        currentshotgunAmmo = 2;
-    }
     void Update()
     {
-        Debug.Log(pistolMag);
         executeReload();
         PlayerMovement();
         Fire();
@@ -55,14 +47,12 @@ public class PlayerControls : MonoBehaviour
 
         yield return new WaitForSeconds(seconds);
         Reload();
-        Debug.Log("Fuck You");
     }
 
     void Reload()
     {
         if (pistol && currentpistolAmmo < 8 && pistolMag >= 1)
-        {
-            
+        {           
             pistolMag -= 1;
             currentpistolAmmo = 8;
         }

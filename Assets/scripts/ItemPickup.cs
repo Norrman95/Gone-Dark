@@ -22,7 +22,9 @@ public class ItemPickup : MonoBehaviour
             canPickUp = true;
         }
         if (canPickUp)
+        {
             Pickup(other);
+        }
     }
 
     void Pickup(Collider other)
@@ -55,7 +57,8 @@ public class ItemPickup : MonoBehaviour
         }
         if (medkit)
         {
-
+            other.GetComponent<PlayerHP>().medkitAmount += medkitAmount;
+            DestroyObject(gameObject);
         }
 
         if (key)

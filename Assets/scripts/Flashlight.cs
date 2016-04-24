@@ -42,7 +42,7 @@ public class Flashlight : MonoBehaviour {
             //}
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.F))
         {
             if(GetComponent<Light>().enabled == false)
             {

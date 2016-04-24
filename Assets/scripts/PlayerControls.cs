@@ -19,6 +19,7 @@ public class PlayerControls : MonoBehaviour
     public bool pistol, shotgun, axe;
     public int pistolMag, totalshotgunAmmo;
     public int currentpistolAmmo, currentshotgunAmmo;
+    public bool carriesPistol, carriesShotgun, carriesAxe;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class PlayerControls : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(pistolMag);
         executeReload();
         PlayerMovement();
         Fire();
@@ -91,14 +93,14 @@ public class PlayerControls : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire") && Time.time > nextFire)
         {
-            if (pistol && currentpistolAmmo >= 1)
+            if (pistol && currentpistolAmmo >= 1 && carriesPistol)
             {
                 nextFire = Time.time + fireRate;
                 Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
 
                 currentpistolAmmo -= 1;
             }
-            if (shotgun && currentshotgunAmmo >= 1)
+            if (shotgun && currentshotgunAmmo >= 1 && carriesShotgun)
             {
                 Quaternion Angle1 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
                 Quaternion Angle2 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));

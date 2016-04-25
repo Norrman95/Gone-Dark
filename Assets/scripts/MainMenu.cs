@@ -2,20 +2,25 @@
 using UnityEngine.SceneManagement;
 
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : MonoBehaviour
+{
 
     private bool firstMenu = true;
     private bool levelSelectMenu = false;
     private bool optionsMenu = false;
+    private SaveLoadGame loadedGame;
 
-	void Start () {
-	
-	}
-	
+    void Start()
+    {
 
-	void Update () {
-	
-	}
+
+    }
+
+
+    void Update()
+    {
+
+    }
 
 
 
@@ -24,22 +29,25 @@ public class MainMenu : MonoBehaviour {
     {
         FirstMenu();
         Options();
-
+        loadedGame = gameObject.GetComponent<SaveLoadGame>();
     }
 
 
     void FirstMenu()
     {
-        if(firstMenu)
+        if (firstMenu)
         {
-            if(GUI.Button(new Rect(875, Screen.height/ 2 - 120, 150, 25),"New Game"))
+            if (GUI.Button(new Rect(875, Screen.height / 2 - 120, 150, 25), "New Game"))
             {
-                SceneManager.LoadScene("intro scene");  
-            
+                SceneManager.LoadScene("intro scene");
+
             }
 
             if (GUI.Button(new Rect(875, Screen.height / 2 - 75, 150, 25), "Load Game"))
             {
+
+                SceneManager.LoadScene("block scenes");
+                loadedGame.Load();
 
             }
 
@@ -52,8 +60,8 @@ public class MainMenu : MonoBehaviour {
             {
                 Application.Quit();
             }
-        
-        
+
+
         }
     }
 

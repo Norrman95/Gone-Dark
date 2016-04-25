@@ -7,8 +7,11 @@ public class pause : MonoBehaviour
     private GameObject raycube;
     private Animator animate;
     private GUIContent content;
+    private SaveLoadGame savedGame;
+    
     void Start()
     {
+        savedGame = gameObject.GetComponent<SaveLoadGame>();
 
         canpause = true;
         raycube = GameObject.Find("RayCube");
@@ -25,11 +28,12 @@ public class pause : MonoBehaviour
         {
             if (canpause)
             {
+
                 Time.timeScale = 0;
                 canpause = false;
                 raycube.SetActive(false);
                 animate.enabled = false;
-
+                
             }
             else
             {
@@ -45,7 +49,7 @@ public class pause : MonoBehaviour
     {
         if (!canpause)
         {
-            
+
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 25, 250, 50), "Resume"))
             {
                 Time.timeScale = 1;
@@ -54,6 +58,17 @@ public class pause : MonoBehaviour
                 animate.enabled = true;
 
             }
+
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 75, 250, 50), "Save Game"))
+            {
+                savedGame.Save();
+            }
+
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 125, 250, 50), "Exit Game"))
+            {
+                Application.Quit();
+            }
+
         }
     }
 

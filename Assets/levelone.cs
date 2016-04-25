@@ -9,6 +9,8 @@ public class levelone : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             SceneManager.LoadScene("Level 1");
+           
+
         }
 
 

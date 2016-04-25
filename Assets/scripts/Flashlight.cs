@@ -13,7 +13,7 @@ public class Flashlight : MonoBehaviour {
     RaycastHit camerarayhit;
 	void Start () 
     {
-        Ray lightdirection = new Ray(transform.position, Vector3.forward * 30);
+       Ray lightdirection = new Ray(transform.position, Vector3.forward * 30);
 
      
 	}

@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 
-
+[Serializable]
 public class PlayerControls : MonoBehaviour
 {
+    
+  
 
     public float moveSpeed;
     private Vector3 input;
@@ -15,14 +20,24 @@ public class PlayerControls : MonoBehaviour
     private float nextFire;
 
     bool Reloading = false;
-
+    
     public bool pistol, shotgun, axe;
     public int pistolMag, totalshotgunAmmo;
     public int currentpistolAmmo, currentshotgunAmmo;
     public bool carriesPistol, carriesShotgun, carriesAxe;
 
+    void Keepinfo()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+    
+
+  
+
     void Update()
     {
+        
+        Keepinfo();
         executeReload();
         PlayerMovement();
         Fire();
@@ -33,6 +48,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (Input.GetButtonDown("Reload"))
         {
+
             StartCoroutine(Wait(2));
         }
     }
@@ -92,11 +108,11 @@ public class PlayerControls : MonoBehaviour
             }
             if (shotgun && currentshotgunAmmo >= 1 && carriesShotgun)
             {
-                Quaternion Angle1 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle2 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle3 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle4 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle5 = (Quaternion.AngleAxis(Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle1 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle2 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle3 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle4 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                Quaternion Angle5 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
 
                 nextFire = Time.time + fireRate;
                 Instantiate(shot, shotSpawn.position, Angle1);
@@ -141,8 +157,10 @@ public class PlayerControls : MonoBehaviour
     {
         if (Input.GetButton("Sprint"))
         {
+
             maxSpeed = 25f;
         }
+
         else
         {
             maxSpeed = 5f;
@@ -155,4 +173,13 @@ public class PlayerControls : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(input * moveSpeed);
         }
     }
+
+
+
+
+
+
+    
+
+    
 }

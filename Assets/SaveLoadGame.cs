@@ -36,36 +36,36 @@ public class SaveLoadGame : MonoBehaviour
 
 
 
-    public void Save()
-    {
+    //public void Save()
+    //{
        
 
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Open(Application.persistentDataPath + "/SavedGame.dat", FileMode.Create);
-        savedPistolAmmo = newData.currentpistolAmmo;
-        savedShotGunAmmo = newData.currentshotgunAmmo;    
-        savedPosition = newData.transform.position;
-        bf.Serialize(file, newData);
-        file.Close();
-    }
+    //    BinaryFormatter bf = new BinaryFormatter();
+    //    FileStream file = File.Open(Application.persistentDataPath + "/SavedGame.dat", FileMode.Create);
+    //    savedPistolAmmo = newData.currentpistolAmmo;
+    //    savedShotGunAmmo = newData.currentshotgunAmmo;    
+    //    savedPosition = newData.transform.position;
+    //    bf.Serialize(file, newData);
+    //    file.Close();
+    //}
 
     
 
-    public void Load()
-    {
-        if (File.Exists(Application.persistentDataPath + "/SavedGame.dat"))
-        {
-            Debug.Log("YAS");
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/SavedGame.dat", FileMode.Open);
-            PlayerControls newData = (PlayerControls)bf.Deserialize(file);
-            file.Close();
-            loadedPistolAmmo = newData.currentpistolAmmo;
-            loadedSotgunAmmo = newData.currentshotgunAmmo;
-            savedPosition = newData.transform.position;
+    //public void Load()
+    //{
+    //    if (File.Exists(Application.persistentDataPath + "/SavedGame.dat"))
+    //    {
+    //        Debug.Log("YAS");
+    //        BinaryFormatter bf = new BinaryFormatter();
+    //        FileStream file = File.Open(Application.persistentDataPath + "/SavedGame.dat", FileMode.Open);
+    //        PlayerControls newData = (PlayerControls)bf.Deserialize(file);
+    //        file.Close();
+    //        loadedPistolAmmo = newData.currentpistolAmmo;
+    //        loadedSotgunAmmo = newData.currentshotgunAmmo;
+    //        savedPosition = newData.transform.position;
 
-        }
-    }
+    //    }
+    //}
 
 
 

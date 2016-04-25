@@ -31,33 +31,33 @@ public class ItemPickup : MonoBehaviour
     {
         if (pistol)
         {
-            other.GetComponent<PlayerControls>().carriesPistol = true;
+            other.GetComponent<PlayerInventory>().carriesPistol = true;
             DestroyObject(gameObject);
         }
         if (shotgun)
         {
-            other.GetComponent<PlayerControls>().carriesShotgun = true;
+            other.GetComponent<PlayerInventory>().carriesShotgun = true;
             DestroyObject(gameObject);
         }
         if (axe)
         {
-            other.GetComponent<PlayerControls>().carriesAxe = true;
+            other.GetComponent<PlayerInventory>().carriesAxe = true;
             DestroyObject(gameObject);
         }
 
         if (pistolMag)
         {
-            other.GetComponent<PlayerControls>().pistolMag += pistolMagAmount;
+            other.GetComponent<PlayerInventory>().pistolMag += pistolMagAmount;
             DestroyObject(gameObject);
         }
         if (shotgunAmmo)
         {
-            other.GetComponent<PlayerControls>().totalshotgunAmmo += shotgunAmmoAmount;
+            other.GetComponent<PlayerInventory>().totalShells += shotgunAmmoAmount;
             DestroyObject(gameObject);
         }
         if (medkit)
         {
-            other.GetComponent<PlayerHP>().medkitAmount += medkitAmount;
+            other.GetComponent<PlayerInventory>().medkitAmount += medkitAmount;
             DestroyObject(gameObject);
         }
 

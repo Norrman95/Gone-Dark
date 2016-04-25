@@ -61,7 +61,7 @@ public class pause : MonoBehaviour
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 75, 250, 50), "Save Game"))
             {
-                savedGame.Save();
+                //savedGame.Save();
             }
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 125, 250, 50), "Exit Game"))

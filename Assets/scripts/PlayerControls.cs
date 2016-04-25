@@ -8,148 +8,116 @@ using System;
 [Serializable]
 public class PlayerControls : MonoBehaviour
 {
-    
-  
-
     public float moveSpeed;
     private Vector3 input;
     private float maxSpeed;
-    public GameObject shot;
+    public GameObject PistolShot, ShotgunShot;
     public Transform shotSpawn;
-    public float fireRate;
-    private float nextFire;
 
-    bool Reloading = false;
-    
-    public bool pistol, shotgun, axe;
-    public int pistolMag, totalshotgunAmmo;
-    public int currentpistolAmmo, currentshotgunAmmo;
-    public bool carriesPistol, carriesShotgun, carriesAxe;
-
-    void Keepinfo()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-    }
-    
-
-  
+    private Quaternion[] Angle = new Quaternion[9];
+    private bool canFirePistol, canFireShotgun, canReloadPistol, canReloadShotgun;
+    private bool reloading, usingMedkit = false;
+    private float fireRate, nextFire;
+    private int addedShells;
 
     void Update()
     {
-        
-        Keepinfo();
-        executeReload();
         PlayerMovement();
+        AvailableAction();
+        Reloading();
+        UsingMedkit();
         Fire();
-        Swapweapons();
     }
 
-    private void executeReload()
+    private void Reloading()
     {
         if (Input.GetButtonDown("Reload"))
         {
-
             StartCoroutine(Wait(2));
+            reloading = true;
+        }
+    }
+    private void UsingMedkit()
+    {
+        if (Input.GetButtonDown("Medkit"))
+        {
+            StartCoroutine(Wait(5));
+            usingMedkit = true;
         }
     }
 
     private IEnumerator Wait(float seconds)
     {
-        if(pistol)
-        currentpistolAmmo = 0;
-
-        if(shotgun)
-        currentshotgunAmmo = 0;
-
         yield return new WaitForSeconds(seconds);
-        Reload();
-    }
 
-    void Reload()
-    {
-        if (pistol && currentpistolAmmo < 8 && pistolMag >= 1)
-        {           
-            pistolMag -= 1;
-            currentpistolAmmo = 8;
-        }
-        if (shotgun && totalshotgunAmmo >= 1)
+        if (reloading)
         {
-            if (totalshotgunAmmo == 1)
+            Reloaded();
+            reloading = false;
+        }
+        if (usingMedkit)
+        {
+            UsedMedkit();
+            usingMedkit = false;
+        }
+    }
+
+    void Reloaded()
+    {
+        if (canReloadPistol)
+        {
+            GetComponent<PlayerInventory>().pistolMag -= 1;
+            GetComponent<PlayerInventory>().currentpistolAmmo = 8;
+        }
+        if (canReloadShotgun)
+        {
+            int maxShells = 2;
+            addedShells = maxShells - GetComponent<PlayerInventory>().currentShells;
+
+            if (GetComponent<PlayerInventory>().totalShells > 1)
             {
-                totalshotgunAmmo -= 1;
-                currentshotgunAmmo = 1;
-                return;
+                GetComponent<PlayerInventory>().totalShells -= addedShells;
+                GetComponent<PlayerInventory>().currentShells += addedShells;
             }
-            if (currentshotgunAmmo == 1)
+            else
             {
-                totalshotgunAmmo -= 1;
-                currentshotgunAmmo = 2;
-            }
-            if (currentshotgunAmmo == 0)
-            {
-                totalshotgunAmmo -= 2;
-                currentshotgunAmmo = 2;
+                GetComponent<PlayerInventory>().totalShells = 0;
+                GetComponent<PlayerInventory>().currentShells += 1;
             }
         }
     }
 
+    void UsedMedkit()
+    {
+        GetComponent<PlayerInfo>().AdjustHP(20);
+        GetComponent<PlayerInventory>().medkitAmount -= 1;
+    }
 
 
     void Fire()
     {
         if (Input.GetButtonDown("Fire") && Time.time > nextFire)
         {
-            if (pistol && currentpistolAmmo >= 1 && carriesPistol)
+            if (canFirePistol)
             {
+                fireRate = 0.25f;
                 nextFire = Time.time + fireRate;
-                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
 
-                currentpistolAmmo -= 1;
+                Instantiate(PistolShot, shotSpawn.position, shotSpawn.rotation);
+
+                GetComponent<PlayerInventory>().currentpistolAmmo -= 1;
             }
-            if (shotgun && currentshotgunAmmo >= 1 && carriesShotgun)
+            if (canFireShotgun)
             {
-                Quaternion Angle1 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle2 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle3 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle4 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-                Quaternion Angle5 = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
-
+                fireRate = 0;
                 nextFire = Time.time + fireRate;
-                Instantiate(shot, shotSpawn.position, Angle1);
-                Instantiate(shot, shotSpawn.position, Angle2);
-                Instantiate(shot, shotSpawn.position, Angle3);
-                Instantiate(shot, shotSpawn.position, Angle4);
-                Instantiate(shot, shotSpawn.position, Angle5);
 
-                currentshotgunAmmo -= 1;
+                for (int i = 0; i < 9; i++)
+                    Instantiate(PistolShot, shotSpawn.position, Angle[i]);
+
+
+                GetComponent<PlayerInventory>().currentShells -= 1;
             }
-            if (axe)
-            {
-
-            }
-        }
-    }
-
-    void Swapweapons()
-    {
-        if (Input.GetButton("pistol"))
-        {
-            pistol = true;
-            shotgun = false;
-            axe = false;
-        }
-
-        if (Input.GetButton("shotgun"))
-        {
-            pistol = false;
-            shotgun = true;
-            axe = false;
-        }
-        if (Input.GetButton("Axe"))
-        {
-            pistol = false;
-            shotgun = false;
-            axe = true;
         }
     }
 
@@ -179,7 +147,59 @@ public class PlayerControls : MonoBehaviour
 
 
 
-    
 
-    
+
+
+
+
+
+
+
+    void AvailableAction()
+    {
+        if (GetComponent<PlayerInventory>().pistol && GetComponent<PlayerInventory>().currentpistolAmmo >= 1 && GetComponent<PlayerInventory>().carriesPistol)
+        {
+            canFirePistol = true;
+        }
+        else
+        {
+            canFirePistol = false;
+        }
+        if (GetComponent<PlayerInventory>().pistol && GetComponent<PlayerInventory>().currentpistolAmmo < 8 && GetComponent<PlayerInventory>().pistolMag >= 1)
+        {
+            canReloadPistol = true;
+        }
+        else
+        {
+            canReloadPistol = false;
+        }
+
+
+        if (GetComponent<PlayerInventory>().shotgun && GetComponent<PlayerInventory>().currentShells >= 1 && GetComponent<PlayerInventory>().carriesShotgun)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                Angle[i] = (Quaternion.AngleAxis(UnityEngine.Random.Range(-15, 15), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+            }
+            canFireShotgun = true;
+        }
+        else
+        {
+            canFireShotgun = false;
+        }
+        if (GetComponent<PlayerInventory>().shotgun && GetComponent<PlayerInventory>().totalShells >= 1)
+        {
+            canReloadShotgun = true;
+        }
+        else
+        {
+            canReloadShotgun = false;
+        }
+
+        if (reloading)
+        {
+            canFirePistol = false;
+            canFireShotgun = false;
+        }
+    }
 }

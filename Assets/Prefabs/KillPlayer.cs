@@ -15,9 +15,9 @@ public class KillPlayer : MonoBehaviour {
         nextHit = Time.time + Hitrate;
             
            
-            other.gameObject.GetComponent<PlayerHP>().AdjustHP(-10);
+            other.gameObject.GetComponent<PlayerInfo>().AdjustHP(-10);
 
-            if (other.gameObject.GetComponent<PlayerHP>().currentHP <= 0)
+            if (other.gameObject.GetComponent<PlayerInfo>().currentHP <= 0)
             {
                 DestroyObject(other.gameObject);
             }

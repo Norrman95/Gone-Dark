@@ -47,7 +47,7 @@ public class MainMenu : MonoBehaviour
             {
 
                 SceneManager.LoadScene("block scenes");
-                loadedGame.Load();
+                //loadedGame.Load();
 
             }
 

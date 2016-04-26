@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
+
+[Serializable]
 public class PlayerInfo : MonoBehaviour
 {
 
-    public int currentHP;
+    public int currentHP, currentStamina;
     private int maxHP = 50;
+    private int maxStamina = 200;
+    public bool running = false;
 
     void Start()
     {
-
+        Debug.Log(currentStamina);
     }
 
     void Update()
@@ -18,6 +25,19 @@ public class PlayerInfo : MonoBehaviour
         {
             currentHP = maxHP;
         }
+        if(currentStamina > maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
+
+        if(running)
+        {
+            currentStamina -= 1;
+        }
+        if(!running && currentStamina <= maxStamina)
+        {
+            currentStamina += 1;
+        }
     }
 
     public void AdjustHP(int newHP)
@@ -25,5 +45,4 @@ public class PlayerInfo : MonoBehaviour
         currentHP += newHP;
         print(currentHP);
     }
-
 }

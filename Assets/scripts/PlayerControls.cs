@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System;
 
-
-[Serializable]
 public class PlayerControls : MonoBehaviour
 {
     public float moveSpeed;
@@ -113,7 +108,7 @@ public class PlayerControls : MonoBehaviour
                 nextFire = Time.time + fireRate;
 
                 for (int i = 0; i < 9; i++)
-                    Instantiate(PistolShot, shotSpawn.position, Angle[i]);
+                    Instantiate(ShotgunShot, shotSpawn.position, Angle[i]);
 
 
                 GetComponent<PlayerInventory>().currentShells -= 1;
@@ -123,14 +118,15 @@ public class PlayerControls : MonoBehaviour
 
     void PlayerMovement()
     {
-        if (Input.GetButton("Sprint"))
+        if (Input.GetButton("Sprint") && GetComponent<PlayerInfo>().currentStamina >= 1)
         {
-
+            GetComponent<PlayerInfo>().running = true;
             maxSpeed = 25f;
         }
 
         else
         {
+            GetComponent<PlayerInfo>().running = false;
             maxSpeed = 5f;
         }
 

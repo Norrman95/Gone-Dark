@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
+using UnityEngine.SceneManagement;
 
 
 [Serializable]
@@ -13,10 +14,14 @@ public class PlayerInfo : MonoBehaviour
     private int maxHP = 50;
     private int maxStamina = 200;
     public bool running = false;
+    
+    
 
     void Start()
     {
         Debug.Log(currentStamina);
+        
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()

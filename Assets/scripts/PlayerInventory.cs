@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
+using UnityEngine.SceneManagement;
 
 
 [Serializable]
@@ -14,6 +15,9 @@ public class PlayerInventory : MonoBehaviour
     public int currentpistolAmmo, currentShells;
     public bool carriesPistol, carriesShotgun, carriesAxe;
     public int medkitAmount;
+  
+    
+   
 
     void Start()
     {
@@ -23,8 +27,9 @@ public class PlayerInventory : MonoBehaviour
     void Update()
     {
         Swapweapons();
-    }
 
+    }
+    
 
     void Swapweapons()
     {

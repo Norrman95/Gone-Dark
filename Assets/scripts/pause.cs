@@ -7,12 +7,13 @@ public class pause : MonoBehaviour
     private GameObject raycube;
     private Animator animate;
     private GUIContent content;
-    private SaveLoadGame savedGame;
+    public PlayerInfo save;
+    public PlayerInventory savInv;
     
     void Start()
     {
-        savedGame = gameObject.GetComponent<SaveLoadGame>();
-
+        savInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
+        save = GameObject.Find("Player").GetComponent<PlayerInfo>();
         canpause = true;
         raycube = GameObject.Find("RayCube");
         animate = GameObject.Find("walkSpritesheet_0").GetComponent<Animator>();
@@ -61,7 +62,9 @@ public class pause : MonoBehaviour
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 75, 250, 50), "Save Game"))
             {
-                savedGame.Save();
+
+                save.SaveInfo();
+                savInv.SaveInventory();
             }
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 125, 250, 50), "Exit Game"))

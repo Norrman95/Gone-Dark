@@ -29,11 +29,6 @@ public class ItemPickup : MonoBehaviour
 
     void Pickup(Collider other)
     {
-        if (pistol)
-        {
-            other.GetComponent<PlayerInventory>().carriesPistol = true;
-            DestroyObject(gameObject);
-        }
         if (shotgun)
         {
             other.GetComponent<PlayerInventory>().carriesShotgun = true;

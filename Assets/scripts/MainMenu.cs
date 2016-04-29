@@ -8,7 +8,8 @@ public class MainMenu : MonoBehaviour
     private bool firstMenu = true;
     private bool levelSelectMenu = false;
     private bool optionsMenu = false;
-    private SaveLoadGame loadedGame;
+    Vector3 StartPos;
+
 
     void Start()
     {
@@ -19,7 +20,7 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
-
+        GameObject.Find("Player").transform.position = StartPos;
     }
 
 
@@ -29,7 +30,7 @@ public class MainMenu : MonoBehaviour
     {
         FirstMenu();
         Options();
-        loadedGame = gameObject.GetComponent<SaveLoadGame>();
+        /// loadedGame = gameObject.GetComponent<SaveLoadGame>();
     }
 
 
@@ -40,6 +41,9 @@ public class MainMenu : MonoBehaviour
             if (GUI.Button(new Rect(875, Screen.height / 2 - 120, 150, 25), "New Game"))
             {
                 SceneManager.LoadScene("intro scene");
+                
+                
+                StartPos = new Vector3(1000000, 100, 100);
 
             }
 

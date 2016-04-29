@@ -153,7 +153,7 @@ public class PlayerControls : MonoBehaviour
 
     void AvailableAction()
     {
-        if (GetComponent<PlayerInventory>().pistol && GetComponent<PlayerInventory>().currentpistolAmmo >= 1 && GetComponent<PlayerInventory>().carriesPistol)
+        if (GetComponent<PlayerInventory>().pistol && GetComponent<PlayerInventory>().currentpistolAmmo >= 1)
         {
             canFirePistol = true;
         }

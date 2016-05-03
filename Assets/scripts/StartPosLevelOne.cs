@@ -7,7 +7,7 @@ public class StartPosLevelOne : MonoBehaviour {
 	
 	void Start () {
 
-        startPos = new Vector3(0, 0, 0);
+        startPos = new Vector3(38, 2, 1.3f);
         GameObject.Find("Player").transform.position = startPos;
 
     }

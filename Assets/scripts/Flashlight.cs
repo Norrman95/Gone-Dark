@@ -18,7 +18,7 @@ public class Flashlight : MonoBehaviour
     {
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.Mouse1))
         {
             if(GetComponent<Light>().enabled == false)
             {

@@ -130,11 +130,30 @@ public class PlayerControls : MonoBehaviour
             maxSpeed = 5f;
         }
 
-        input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        if (GetComponent<Rigidbody>().velocity.magnitude < maxSpeed)
-        {
+        //input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        //if (GetComponent<Rigidbody>().velocity.magnitude < maxSpeed)
+        //{
 
-            GetComponent<Rigidbody>().AddForce(input * moveSpeed);
+        //    GetComponent<Rigidbody>().AddForce(input * moveSpeed);
+        //}
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position += Vector3.forward * Time.deltaTime * moveSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.position -= Vector3.forward * Time.deltaTime * moveSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.position -= Vector3.right * Time.deltaTime * moveSpeed;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.position += Vector3.right * Time.deltaTime * moveSpeed;
         }
     }
 

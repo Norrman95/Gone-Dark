@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DoorScript : MonoBehaviour
 {
-    public bool redDoor, blueDoor, yellowDoor;
+    public bool redDoor, blueDoor, yellowDoor, Open;
     private bool canOpen, inRange;
 
     private PlayerInventory playerInv;
@@ -18,7 +18,11 @@ public class DoorScript : MonoBehaviour
     {
         if (count > 0)
         {
-            DestroyObject(gameObject);
+            Open = true;
+        }
+        else
+        {
+            Open = false;
         }
     }
 

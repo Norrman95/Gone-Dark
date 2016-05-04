@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
 using UnityEngine.SceneManagement;
-using UnityEditor.SceneManagement;
+
 
 public class PlayerInfo : MonoBehaviour
 {

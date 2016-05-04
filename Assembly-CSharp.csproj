@@ -52,13 +52,14 @@
      <Compile Include="Assets\Prefabs\KillPlayer.cs" />
      <Compile Include="Assets\levelone.cs" />
      <Compile Include="Assets\scripts\DoorScript.cs" />
+     <Compile Include="Assets\scripts\DoorStatus.cs" />
      <Compile Include="Assets\scripts\EnemyAggro.cs" />
      <Compile Include="Assets\scripts\EnemyHP.cs" />
      <Compile Include="Assets\scripts\Flashlight.cs" />
      <Compile Include="Assets\scripts\FollowPlayer.cs" />
      <Compile Include="Assets\scripts\Follow_player.cs" />
-     <Compile Include="Assets\scripts\ItemData.cs" />
      <Compile Include="Assets\scripts\ItemPickup.cs" />
+     <Compile Include="Assets\scripts\ItemStatus.cs" />
      <Compile Include="Assets\scripts\Killbullet.cs" />
      <Compile Include="Assets\scripts\MainMenu.cs" />
      <Compile Include="Assets\scripts\Mover.cs" />

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemData : MonoBehaviour
+public class ItemStatus : MonoBehaviour
 {
     public ItemPickup[] Item = new ItemPickup[2];
     public ItemPickup itemData;

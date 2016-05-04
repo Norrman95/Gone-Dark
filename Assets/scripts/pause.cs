@@ -9,6 +9,7 @@ public class pause : MonoBehaviour
     private GUIContent content;
     public PlayerInfo save;
     public PlayerInventory savInv;
+    public ItemPickup saveItem;
     
     void Start()
     {
@@ -17,6 +18,7 @@ public class pause : MonoBehaviour
         canpause = true;
         raycube = GameObject.Find("RayCube");
         animate = GameObject.Find("walkSpritesheet_0").GetComponent<Animator>();
+        saveItem = GameObject.Find("Item").GetComponent<ItemPickup>();
     }
 
 
@@ -24,7 +26,6 @@ public class pause : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (canpause)
@@ -65,6 +66,7 @@ public class pause : MonoBehaviour
 
                 save.SaveInfo();
                 savInv.SaveInventory();
+                saveItem.saveItemstatus();
             }
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 125, 250, 50), "Exit Game"))

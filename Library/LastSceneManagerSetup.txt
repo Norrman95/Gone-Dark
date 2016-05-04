@@ -1,12 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/block scenes.unity
-=======
-<<<<<<< HEAD
-- path: Assets/block scenes.unity
-=======
 - path: Assets/Main Menu.unity
->>>>>>> origin/master
->>>>>>> origin/master
   isLoaded: 1
   isActive: 1

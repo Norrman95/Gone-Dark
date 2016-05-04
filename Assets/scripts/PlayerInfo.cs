@@ -15,20 +15,15 @@ public class PlayerInfo : MonoBehaviour
     public bool running = false;
     public string sceneID;
     public float positionX, positionY, positionZ;
-    
-    
    
-   
-
-
 
     void Start()
     {
         Debug.Log(currentStamina);
         DontDestroyOnLoad(gameObject);
-        
-    }
 
+    }
+  
     void Update()
     {
 
@@ -77,22 +72,22 @@ public class PlayerInfo : MonoBehaviour
         PlayerPrefs.SetInt("currentStamina", currentStamina);
         // PlayerPrefs.SetString("sceneID", sceneID);
         PlayerPrefs.Save();
-        
-      
+
+
     }
     public void LoadInfo()
     {
 
-       
+
         currentHP = PlayerPrefs.GetInt("currentHP");
         currentStamina = PlayerPrefs.GetInt("currentStamina");
         sceneID = PlayerPrefs.GetString("sceneID");
         positionX = PlayerPrefs.GetFloat("positionX");
         positionY = PlayerPrefs.GetFloat("positionY");
         positionZ = PlayerPrefs.GetFloat("positionZ");
-       // SceneManager.LoadScene(sceneID);
+        //  SceneManager.LoadScene(sceneID);
         transform.position = new Vector3(positionX, positionY, positionZ);
-        
+
 
 
     }

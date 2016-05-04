@@ -63,6 +63,7 @@ public class PlayerInventory : MonoBehaviour
         PlayerPrefs.SetInt("redKeycard", (redKeycard ? 1 : 0));
         PlayerPrefs.SetInt("pistol", (pistol ? 1 : 0));
         PlayerPrefs.SetInt("shotgun", (shotgun ? 1 : 0));
+        PlayerPrefs.Save();
     }
     public void LoadInventory()
     {

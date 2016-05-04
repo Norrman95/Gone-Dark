@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ItemPickup : MonoBehaviour
 {
-    public bool pistol, shotgun, axe, pistolMag, shotgunAmmo, medkit, key;
+    public bool pistol, shotgun, pistolMag, shotgunAmmo, medkit, redKeycard, blueKeycard, yellowKeycard;
     public int pistolMagAmount, shotgunAmmoAmount, medkitAmount;
     private bool canPickUp;
 
@@ -34,11 +34,6 @@ public class ItemPickup : MonoBehaviour
             other.GetComponent<PlayerInventory>().carriesShotgun = true;
             DestroyObject(gameObject);
         }
-        if (axe)
-        {
-            other.GetComponent<PlayerInventory>().carriesAxe = true;
-            DestroyObject(gameObject);
-        }
 
         if (pistolMag)
         {
@@ -56,9 +51,20 @@ public class ItemPickup : MonoBehaviour
             DestroyObject(gameObject);
         }
 
-        if (key)
+        if (redKeycard)
         {
-
+            other.GetComponent<PlayerInventory>().redKeycard = true;
+            DestroyObject(gameObject);
+        }
+        if(blueKeycard)
+        {
+            other.GetComponent<PlayerInventory>().blueKeycard = true;
+            DestroyObject(gameObject);
+        }
+        if(yellowKeycard)
+        {
+            other.GetComponent<PlayerInventory>().yellowKeycard = true;
+            DestroyObject(gameObject);
         }
     }
 }

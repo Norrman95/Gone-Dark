@@ -11,7 +11,8 @@ using UnityEngine.SceneManagement;
 public class PlayerInventory : MonoBehaviour
 {
     public bool pistol, shotgun, axe;
-    public bool carriesShotgun, carriesAxe;
+    public bool carriesShotgun;
+    public bool yellowKeycard, blueKeycard, redKeycard;
     
     public int pistolMag, totalShells;
     public int currentpistolAmmo, currentShells;
@@ -40,21 +41,13 @@ public class PlayerInventory : MonoBehaviour
         {
             pistol = true;
             shotgun = false;
-            axe = false;
         }
 
         if (Input.GetButton("shotgun"))
         {
             pistol = false;
             shotgun = true;
-            axe = false;
         }
-        if (Input.GetButton("axe"))
-        {
-            pistol = false;
-            shotgun = false;
-            axe = true;
-        } 
     }
 
     public void SaveInventory()
@@ -65,10 +58,11 @@ public class PlayerInventory : MonoBehaviour
         PlayerPrefs.SetInt("currentShells", currentShells);
         PlayerPrefs.SetInt("medkitAmount", medkitAmount);
         PlayerPrefs.SetInt("carriesShotgun", (carriesShotgun ? 1 : 0));
-        PlayerPrefs.SetInt("carriesAxe", (carriesAxe ? 1 : 0));
+        PlayerPrefs.SetInt("yellowKeycard", (yellowKeycard ? 1 : 0));
+        PlayerPrefs.SetInt("blueKeycard", (blueKeycard ? 1 : 0));
+        PlayerPrefs.SetInt("redKeycard", (redKeycard ? 1 : 0));
         PlayerPrefs.SetInt("pistol", (pistol ? 1 : 0));
         PlayerPrefs.SetInt("shotgun", (shotgun ? 1 : 0));
-        PlayerPrefs.SetInt("axe", (axe ? 1 : 0));
     }
     public void LoadInventory()
     {
@@ -80,7 +74,9 @@ public class PlayerInventory : MonoBehaviour
         axe = (PlayerPrefs.GetInt("axe") != 0);
         shotgun = (PlayerPrefs.GetInt("shotgun") != 0);
         pistol = (PlayerPrefs.GetInt("pistol") != 0);
-        carriesAxe = (PlayerPrefs.GetInt("carriesAxe") != 0);
         carriesShotgun = (PlayerPrefs.GetInt("carriesShotgun") != 0);
+        redKeycard = (PlayerPrefs.GetInt("redKeycard") != 0);
+        blueKeycard = (PlayerPrefs.GetInt("blueKeycard") != 0);
+        yellowKeycard = (PlayerPrefs.GetInt("yellowKeycard") != 0);
     }
 }

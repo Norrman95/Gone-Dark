@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class MainMenu : MonoBehaviour
 {
-
+    public bool started;
+    UIinfo image;
     private bool firstMenu = true;
     private bool levelSelectMenu = false;
     private bool optionsMenu = false;
@@ -24,6 +26,7 @@ public class MainMenu : MonoBehaviour
         loadInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         content = new GUIContent("", texBox, "");
 
+        image = GameObject.Find("InventoryScreen").GetComponent<UIinfo>();
 
     }
 
@@ -51,18 +54,17 @@ public class MainMenu : MonoBehaviour
         {
             if (GUI.Button(new Rect(875, Screen.height / 2 - 120, 150, 25), "New Game"))
             {
+                image.gameObject.GetComponent<UIinfo>().started = true;
                 SceneManager.LoadScene("intro scene");
-
 
             }
 
             if (GUI.Button(new Rect(875, Screen.height / 2 - 75, 150, 25), "Load Game"))
             {
-
+                image.gameObject.GetComponent<UIinfo>().started = true;
                 //  SceneManager.LoadScene("block scenes");
                 loadInfo.LoadInfo();
                 loadInv.LoadInventory();
-
 
             }
 

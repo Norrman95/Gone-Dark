@@ -6,10 +6,14 @@ public class UIscript : MonoBehaviour
 {
     Text[] text = new Text[5];
     Image[] image = new Image[7];
-    public bool open;
+
+    MainMenu menu;
+    public bool open = false;
 
     void Start()
     {
+        menu = GameObject.Find("Canvas").gameObject.GetComponent<MainMenu>();
+
         text[0] = GameObject.Find("PistolMag").gameObject.GetComponent<Text>();
         text[1] = GameObject.Find("ShotgunShells").gameObject.GetComponent<Text>();
         text[2] = GameObject.Find("Medkits").gameObject.GetComponent<Text>();
@@ -40,6 +44,11 @@ public class UIscript : MonoBehaviour
             }
         }
 
+        OpenInventory();
+    }
+
+    void OpenInventory()
+    {
         if (open)
         {
             for (int i = 0; i < 6; i++)

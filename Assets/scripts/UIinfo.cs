@@ -8,9 +8,12 @@ public class UIinfo : MonoBehaviour
     Image[] image = new Image[5];
     PlayerInventory inv;
     UIscript ui;
+    public bool started = false;
 
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+
         ui = GameObject.Find("Player").GetComponent<UIscript>();
         inv = GameObject.Find("Player").GetComponent<PlayerInventory>();
         text[0] = GameObject.Find("PistolMag").gameObject.GetComponent<Text>();
@@ -28,6 +31,11 @@ public class UIinfo : MonoBehaviour
 
     void Update()
     {
+        if (started)
+        {
+            image[6].gameObject.SetActive(true);
+        }
+
         if (ui.GetComponent<UIscript>().open)
         {
             if (inv.GetComponent<PlayerInventory>().redKeycard)
@@ -89,5 +97,7 @@ public class UIinfo : MonoBehaviour
             text[3].text = inv.GetComponent<PlayerInventory>().currentpistolAmmo + "/8";
             text[4].text = inv.GetComponent<PlayerInventory>().currentShells + "/2";
         }
+
+ 
     }
 }

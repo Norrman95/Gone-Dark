@@ -3,14 +3,14 @@ using System.Collections;
 
 public class ItemStatus : MonoBehaviour
 {
-    public ItemPickup[] Item = new ItemPickup[2];
-    public ItemPickup itemData;
+    ItemPickup[] Item = new ItemPickup[1];
+    ItemPickup itemData;
 
     void Start()
     {
         itemData = GameObject.Find("Item").GetComponent<ItemPickup>();
         Item[0] = GameObject.Find("Item").GetComponent<ItemPickup>();
-        Item[1] = GameObject.Find("Item1").GetComponent<ItemPickup>();
+        //Item[1] = GameObject.Find("Item1").GetComponent<ItemPickup>();
     }
 
     void Update()

@@ -15,7 +15,7 @@ public class animationStatesSwitch : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
        
-        if (Input.anyKey)
+        if (Input.GetKey("w")|| Input.GetKey("d")|| Input.GetKey("s")|| Input.GetKey("a"))
         {
             movement = true;
         }

@@ -8,7 +8,6 @@ public class UIinfo : MonoBehaviour
     Image[] image = new Image[5];
     PlayerInventory inv;
     UIscript ui;
-    public bool started = false;
 
     void Start()
     {
@@ -31,11 +30,6 @@ public class UIinfo : MonoBehaviour
 
     void Update()
     {
-        if (started)
-        {
-            image[6].gameObject.SetActive(true);
-        }
-
         if (ui.GetComponent<UIscript>().open)
         {
             if (inv.GetComponent<PlayerInventory>().redKeycard)

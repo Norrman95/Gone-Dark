@@ -10,7 +10,7 @@ public class pause : MonoBehaviour
     public PlayerInfo save;
     public PlayerInventory savInv;
 
-    public KillEnemy saveEnemy;
+    public EnemyHP saveEnemy;
     public ItemPickup saveItem;
 
     void Start()
@@ -20,12 +20,9 @@ public class pause : MonoBehaviour
         canpause = true;
         raycube = GameObject.Find("RayCube");
         animate = GameObject.Find("walkSpritesheet_0").GetComponent<Animator>();
-        saveEnemy = GameObject.Find("Player").GetComponentInChildren<KillEnemy>();
+        saveEnemy = GameObject.Find("Player").GetComponentInChildren<EnemyHP>();
         saveItem = GameObject.Find("Item").GetComponent<ItemPickup>();
     }
-
-
-
 
     void Update()
     {
@@ -54,7 +51,6 @@ public class pause : MonoBehaviour
     {
         if (!canpause)
         {
-
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 25, 250, 50), "Resume"))
             {
                 Time.timeScale = 1;
@@ -66,11 +62,10 @@ public class pause : MonoBehaviour
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 75, 250, 50), "Save Game"))
             {
-
+                saveItem.saveItemstatus();
+                saveEnemy.saveEnemystatus();
                 save.SaveInfo();
                 savInv.SaveInventory();
-                saveEnemy.saveEnemy();
-                saveItem.saveItemstatus();
             }
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 125, 250, 50), "Exit Game"))

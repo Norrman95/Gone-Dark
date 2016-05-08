@@ -13,13 +13,12 @@ public class EnemyHP : MonoBehaviour
 
     public void saveEnemystatus()
     {
-        PlayerPrefs.SetInt("Killed", (Killed ? 1 : 0));
         PlayerPrefs.SetInt("currentHp", currentHp);
     }
+
     public void loadEnemystatus()
     {
         currentHp = (PlayerPrefs.GetInt("currentHp"));
-        Killed = (PlayerPrefs.GetInt("Killed") != 0);
     }
 
     public void AdjustHealth(int newHp)

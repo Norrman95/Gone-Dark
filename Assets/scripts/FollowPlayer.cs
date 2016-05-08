@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FollowPlayer : MonoBehaviour {
 
@@ -16,7 +17,7 @@ public class FollowPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        
+       
         Vector3 playerInfo = player.transform.position;
         mousechecker.transform.position = playerInfo;
 	

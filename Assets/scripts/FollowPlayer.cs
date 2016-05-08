@@ -8,6 +8,7 @@ public class FollowPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
     {
+        DontDestroyOnLoad(gameObject);
         mousechecker = GameObject.Find("RayCube");
         player = GameObject.Find("Player");
     }
@@ -15,7 +16,7 @@ public class FollowPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        DontDestroyOnLoad(gameObject);
+        
         Vector3 playerInfo = player.transform.position;
         mousechecker.transform.position = playerInfo;
 	

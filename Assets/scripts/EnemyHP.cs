@@ -11,14 +11,14 @@ public class EnemyHP : MonoBehaviour
         KillEnemy();
     }
 
-    public void saveEnemystatus()
+    public void saveEnemystatus(int i)
     {
-        PlayerPrefs.SetInt("currentHp", currentHp);
+        PlayerPrefs.SetInt("currentHp"+ i, currentHp);
     }
 
-    public void loadEnemystatus()
+    public void loadEnemystatus(int i)
     {
-        currentHp = (PlayerPrefs.GetInt("currentHp"));
+        currentHp = (PlayerPrefs.GetInt("currentHp"+ i));
     }
 
     public void AdjustHealth(int newHp)

@@ -8,13 +8,13 @@ public class ItemPickup : MonoBehaviour
     private bool canPickUp;
     public bool pickedUp;
 
-    public void saveItemstatus()
+    public void saveItemstatus(int i)
     {
-        PlayerPrefs.SetInt("pickedUp", (pickedUp ? 1 : 0));
+        PlayerPrefs.SetInt("pickedUp"+ i, (pickedUp ? 1 : 0));
     }
-    public void loadItemstatus()
+    public void loadItemstatus(int i)
     {
-        pickedUp = (PlayerPrefs.GetInt("pickedUp") != 0);
+        pickedUp = (PlayerPrefs.GetInt("pickedUp"+ i) != 0);
     }
 
     void OnTriggerExit(Collider other)

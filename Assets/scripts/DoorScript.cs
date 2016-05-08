@@ -26,13 +26,13 @@ public class DoorScript : MonoBehaviour
         }
     }
 
-    public void saveDoorstatus()
+    public void saveDoorstatus(int i)
     {
-        PlayerPrefs.SetInt("Open", (Open ? 1 : 0));
+        PlayerPrefs.SetInt("Open"+ i, (Open ? 1 : 0));
     }
-    public void loadDoorstatus()
+    public void loadDoorstatus(int i)
     {
-        Open = (PlayerPrefs.GetInt("Open") != 0);
+        Open = (PlayerPrefs.GetInt("Open"+ i) != 0);
     }
 
     void OnTriggerEnter(Collider other)

@@ -64,22 +64,21 @@ public class pause : MonoBehaviour
                 canpause = true;
                 raycube.SetActive(true);
                 animate.enabled = true;
-
             }
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 75, 250, 50), "Save Game"))
             {
                 for (int i = 0; i < Item.Length; i++)
                 {
-                    Item[i].saveItemstatus();
+                    Item[i].saveItemstatus(i);
                 }
                 for (int i = 0; i < Door.Length; i++)
                 {
-                    Door[i].saveDoorstatus();
+                    Door[i].saveDoorstatus(i);
                 }
                 for (int i = 0; i < Enemy.Length; i++)
                 {
-                    Enemy[i].saveEnemystatus();
+                    Enemy[i].saveEnemystatus(i);
                 }
                 save.SaveInfo();
                 savInv.SaveInventory();

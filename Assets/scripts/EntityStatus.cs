@@ -25,15 +25,15 @@ public class EntityStatus : MonoBehaviour
         {
             for (int i = 0; i < Item.Length; i++)
             {
-                Item[i].loadItemstatus();
+                Item[i].loadItemstatus(i);
             }
             for (int i = 0; i < Door.Length; i++)
             {
-                Door[i].loadDoorstatus();
+                Door[i].loadDoorstatus(i);
             }
             for (int i = 0; i < Enemy.Length; i++)
             {
-                Enemy[i].loadEnemystatus();
+                Enemy[i].loadEnemystatus(i);
             }
         }
 

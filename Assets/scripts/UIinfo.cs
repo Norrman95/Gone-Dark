@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIinfo : MonoBehaviour
 {
     Text[] text = new Text[5];
-    Image[] image = new Image[5];
+    Image[] image = new Image[6];
     PlayerInventory inv;
     UIscript ui;
 
@@ -26,6 +26,7 @@ public class UIinfo : MonoBehaviour
         image[2] = GameObject.Find("YellowKeycard").gameObject.GetComponent<Image>();
         image[3] = GameObject.Find("Shotgun").gameObject.GetComponent<Image>();
         image[4] = GameObject.Find("Pistol").gameObject.GetComponent<Image>();
+        image[5] = GameObject.Find("MedkitPic").gameObject.GetComponent<Image>();
     }
 
     void Update()
@@ -85,6 +86,7 @@ public class UIinfo : MonoBehaviour
                 image[4].color = c;
             }
 
+            
             text[0].text = "Pistol Magazines : " + inv.GetComponent<PlayerInventory>().pistolMag;
             text[1].text = "Shotgun Shells : " + inv.GetComponent<PlayerInventory>().totalShells;
             text[2].text = "Medkits : " + inv.GetComponent<PlayerInventory>().medkitAmount;

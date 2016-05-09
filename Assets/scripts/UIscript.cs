@@ -24,10 +24,11 @@ public class UIscript : MonoBehaviour
 
         image[0] = GameObject.Find("Shotgun").gameObject.GetComponent<Image>();
         image[1] = GameObject.Find("Pistol").gameObject.GetComponent<Image>();
-        image[2] = GameObject.Find("Background").GetComponent<Image>();
-        image[3] = GameObject.Find("RedKeycard").gameObject.GetComponent<Image>();
-        image[4] = GameObject.Find("BlueKeycard").gameObject.GetComponent<Image>();
-        image[5] = GameObject.Find("YellowKeycard").gameObject.GetComponent<Image>();
+        image[2] = GameObject.Find("Background").gameObject.GetComponent<Image>();
+        image[3] = GameObject.Find("MedkitPic").gameObject.GetComponent<Image>();
+        image[4] = GameObject.Find("RedKeycard").gameObject.GetComponent<Image>();
+        image[5] = GameObject.Find("BlueKeycard").gameObject.GetComponent<Image>();
+        image[7] = GameObject.Find("YellowKeycard").gameObject.GetComponent<Image>();
 
         image[6] = GameObject.Find("BackpackIcon").GetComponent<Image>();
 
@@ -63,7 +64,7 @@ public class UIscript : MonoBehaviour
         {
             image[6].gameObject.SetActive(false);
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 image[i].gameObject.SetActive(true);
             }
@@ -71,24 +72,24 @@ public class UIscript : MonoBehaviour
             {
                 text[i].gameObject.SetActive(true);
             }
-            
-            if(playerInv.GetComponent<PlayerInventory>().redKeycard)
-            {
-                image[3].gameObject.SetActive(true);
-            }
-            if(playerInv.GetComponent<PlayerInventory>().blueKeycard)
+
+            if (playerInv.GetComponent<PlayerInventory>().redKeycard)
             {
                 image[4].gameObject.SetActive(true);
             }
-            if (playerInv.GetComponent<PlayerInventory>().yellowKeycard)
+            if (playerInv.GetComponent<PlayerInventory>().blueKeycard)
             {
                 image[5].gameObject.SetActive(true);
             }
-            
+            if (playerInv.GetComponent<PlayerInventory>().yellowKeycard)
+            {
+                image[7].gameObject.SetActive(true);
+            }
+
         }
         else
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 image[i].gameObject.SetActive(false);
             }

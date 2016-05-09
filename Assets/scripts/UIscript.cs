@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIscript : MonoBehaviour
 {
     Text[] text = new Text[5];
-    Image[] image = new Image[7];
+    Image[] image = new Image[8];
     private PlayerInventory playerInv;
 
     MainMenu menu;
@@ -28,13 +28,13 @@ public class UIscript : MonoBehaviour
         image[3] = GameObject.Find("MedkitPic").gameObject.GetComponent<Image>();
         image[4] = GameObject.Find("RedKeycard").gameObject.GetComponent<Image>();
         image[5] = GameObject.Find("BlueKeycard").gameObject.GetComponent<Image>();
-        image[7] = GameObject.Find("YellowKeycard").gameObject.GetComponent<Image>();
+        image[6] = GameObject.Find("YellowKeycard").gameObject.GetComponent<Image>();
+        image[7] = GameObject.Find("BackpackIcon").GetComponent<Image>();
 
-        image[6] = GameObject.Find("BackpackIcon").GetComponent<Image>();
 
-        Color c = image[6].color;
+        Color c = image[7].color;
         c.a = 0;
-        image[6].color = c;
+        image[7].color = c;
     }
 
     void Update()
@@ -62,8 +62,6 @@ public class UIscript : MonoBehaviour
     {
         if (open)
         {
-            image[6].gameObject.SetActive(false);
-
             for (int i = 0; i < 4; i++)
             {
                 image[i].gameObject.SetActive(true);
@@ -72,6 +70,7 @@ public class UIscript : MonoBehaviour
             {
                 text[i].gameObject.SetActive(true);
             }
+            image[7].gameObject.SetActive(false);
 
             if (playerInv.GetComponent<PlayerInventory>().redKeycard)
             {
@@ -83,7 +82,7 @@ public class UIscript : MonoBehaviour
             }
             if (playerInv.GetComponent<PlayerInventory>().yellowKeycard)
             {
-                image[7].gameObject.SetActive(true);
+                image[6].gameObject.SetActive(true);
             }
 
         }
@@ -97,7 +96,7 @@ public class UIscript : MonoBehaviour
             {
                 text[i].gameObject.SetActive(false);
             }
-            image[6].gameObject.SetActive(true);
+            image[7].gameObject.SetActive(true);
         }
     }
 }

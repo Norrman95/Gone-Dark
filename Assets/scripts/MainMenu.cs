@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     public Texture texboxControlmap;
     public Texture texboxVolume;
     public Texture texboxControls;
-
+    private pause getpause;
     public bool started;
     UIscript image;
     private bool firstMenu = true;
@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
+       
         loadInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
         loadInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         content = new GUIContent("", texBox, "");
@@ -63,7 +64,9 @@ public class MainMenu : MonoBehaviour
         {
             if (GUI.Button(new Rect(875, Screen.height / 2 - 120, 150, 25), "New Game"))
             {
+               
                 SceneManager.LoadScene("intro scene");
+
 
             }
 

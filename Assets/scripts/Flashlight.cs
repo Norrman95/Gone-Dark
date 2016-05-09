@@ -2,32 +2,38 @@
 using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class Flashlight : MonoBehaviour 
+public class Flashlight : MonoBehaviour
 {
     public GameObject goPlayer;
 
     Ray cameraRay;
     RaycastHit camerarayhit;
+    pause checkpause;
 
-	void Start () 
+    void Start()
     {
-       Ray lightdirection = new Ray(transform.position, Vector3.forward * 30);  
-	}
+        Ray lightdirection = new Ray(transform.position, Vector3.forward * 30);
+        checkpause = GameObject.Find("PauseObject").GetComponent<pause>();
+    }
 
-	void Update () 
+    void Update()
     {
-        cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if(Input.GetKeyDown(KeyCode.Mouse1))
+        if (checkpause.canpause)
         {
-            if(GetComponent<Light>().enabled == false)
+            cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                GetComponent<Light>().enabled = true;
-            }
-            else
-            {
-                GetComponent<Light>().enabled = false;
+                if (GetComponent<Light>().enabled == false)
+                {
+                    GetComponent<Light>().enabled = true;
+                }
+                else
+                {
+                    GetComponent<Light>().enabled = false;
+                }
             }
         }
-	}
+
+    }
 }

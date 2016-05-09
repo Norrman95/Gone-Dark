@@ -9,6 +9,7 @@ public class camerafollow : MonoBehaviour {
 	void Start () {
         mainCamera = GetComponent<Camera>();
         player = GameObject.Find("Player");
+      //  DontDestroyOnLoad(gameObject);
 	}
 	
 	// Update is called once per frame

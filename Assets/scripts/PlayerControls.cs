@@ -134,7 +134,7 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetButton("Sprint") && GetComponent<PlayerInfo>().currentStamina >= 1)
         {
             GetComponent<PlayerInfo>().running = true;
-            maxSpeed = 25f;
+            maxSpeed = 25;
         }
 
         else

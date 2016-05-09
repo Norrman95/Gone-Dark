@@ -32,6 +32,17 @@ public class PlayerControls : MonoBehaviour
             reloading = true;
         }
     }
+
+    public void PlaySound(int number)
+    {
+
+        if (number == 1)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+
+
+    }
     private void UsingMedkit()
     {
         if (Input.GetButtonDown("Medkit"))
@@ -95,6 +106,8 @@ public class PlayerControls : MonoBehaviour
         {
             if (canFirePistol)
             {
+
+                PlaySound(1);
                 fireRate = 0.25f;
                 nextFire = Time.time + fireRate;
 
@@ -106,7 +119,7 @@ public class PlayerControls : MonoBehaviour
             {
                 fireRate = 0;
                 nextFire = Time.time + fireRate;
-
+                PlaySound(1);
                 for (int i = 0; i < 9; i++)
                     Instantiate(ShotgunShot, shotSpawn.position, Angle[i]);
 

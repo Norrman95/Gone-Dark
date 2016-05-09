@@ -29,6 +29,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Sight_Range = 5;
             Sight_Width = 90;
 
+            GetComponent<AudioSource>().Play(22000);
+
 
         }
 
@@ -36,7 +38,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private void Update()
         {
             if (target != null)
-                //agent.SetDestination(target.position);
+                agent.SetDestination(target.position);
 
             if (CanSeePlayer() == true)
             {

@@ -11,6 +11,7 @@ public class pause : MonoBehaviour
     public PlayerInfo save;
     public PlayerInventory savInv;
     public animationStatesSwitch rotation;
+    public GameObject currentPlayer;
 
     DoorScript[] Door = new DoorScript[1];
     ItemPickup[] Item = new ItemPickup[2];
@@ -25,6 +26,7 @@ public class pause : MonoBehaviour
         Enemy[0] = GameObject.Find("Enemy").GetComponent<EnemyHP>();
         Enemy[1] = GameObject.Find("Enemy1").GetComponent<EnemyHP>();
         Enemy[2] = GameObject.Find("Enemy Alarm").GetComponent<EnemyHP>();
+        currentPlayer = GameObject.Find("Player");
         raycube = GameObject.Find("RayCube");
         savInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
         save = GameObject.Find("Player").GetComponent<PlayerInfo>();
@@ -51,8 +53,8 @@ public class pause : MonoBehaviour
                 Time.timeScale = 0;
                 canpause = false;
                 raycube.SetActive(false);
-                animate.enabled = false;
-                rotation.enabled = false;
+              //  animate.enabled = false;
+               // rotation.enabled = false;
 
 
 
@@ -106,6 +108,7 @@ public class pause : MonoBehaviour
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 175, 250, 50), "Exit Game To Main Menu"))
             {
                 DestroyObject(raycube);
+                DestroyObject(currentPlayer);
                 DestroyObject(gameObject);
                 SceneManager.LoadScene("Main Menu");
 

@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class Flashlight : MonoBehaviour
+public class LightRays : MonoBehaviour
 {
     Ray cameraRay;
     RaycastHit camerarayhit, hit;
@@ -10,21 +10,14 @@ public class Flashlight : MonoBehaviour
 
     void Start()
     {
-        Ray lightdirection = new Ray(transform.position, Vector3.forward * 30);
-        checkpause = GameObject.Find("PauseObject").GetComponent<pause>();
+
     }
 
     void Update()
     {
-        if (checkpause.canpause)
-        {
-            cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        }
-
-        if(LightRays())
+        if (Rays())
         {
             increaseRange();
-            Debug.Log("FUnkar");
         }
     }
 
@@ -34,7 +27,7 @@ public class Flashlight : MonoBehaviour
         AICharacterControl.Sight_Width = 100;
     }
 
-    bool LightRays()
+    bool Rays()
     {
         Quaternion Angle1 = Quaternion.AngleAxis(-15, new Vector3(0, 1, 0));
         Quaternion Angle2 = Quaternion.AngleAxis(15, new Vector3(0, 1, 0));
@@ -91,5 +84,3 @@ public class Flashlight : MonoBehaviour
         return false;
     }
 }
-
-

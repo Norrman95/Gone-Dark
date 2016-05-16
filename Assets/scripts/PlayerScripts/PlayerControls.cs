@@ -6,24 +6,19 @@ public class PlayerControls : MonoBehaviour
     private float moveSpeed;
     private float maxSpeed;
     private bool usingMedkit = false;
+        LightRays Rays;
+    void Start()
+    {
 
+    Rays = GameObject.Find("LightRays").GetComponent<LightRays>();
+    }
 
     void Update()
     {
         PlayerMovement();
         UsingMedkit();
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            if (GetComponentInChildren<rotation>().enabled == false)
-            {
-                GetComponent<Light>().enabled = true;
-            }
-            else
-            {
-                GetComponent<Light>().enabled = false;
-            }
-        }
+
     }
 
     public void PlaySound(int number)

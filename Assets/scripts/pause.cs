@@ -50,6 +50,7 @@ public class pause : MonoBehaviour
         {
             if (canpause)
             {
+                
                 Time.timeScale = 0;
                 canpause = false;
                 raycube.SetActive(false);
@@ -65,6 +66,8 @@ public class pause : MonoBehaviour
                 canpause = true;
                 raycube.SetActive(true);
                 animate.enabled = true;
+                
+               
             }
         }
     }
@@ -79,10 +82,12 @@ public class pause : MonoBehaviour
                 canpause = true;
                 raycube.SetActive(true);
                 animate.enabled = true;
+                
             }
             
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 75, 250, 50), "Save Game"))
             {
+              
                 save.SaveInfo();
                 savInv.SaveInventory();
                 for (int i = 0; i < Item.Length; i++)
@@ -110,6 +115,7 @@ public class pause : MonoBehaviour
                 DestroyObject(raycube);
                 DestroyObject(currentPlayer);
                 DestroyObject(gameObject);
+                
                 SceneManager.LoadScene("Main Menu");
 
             }

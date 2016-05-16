@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerControls : MonoBehaviour
 {
-    public float moveSpeed;
+    private float moveSpeed;
     private Vector3 input;
     private float maxSpeed;
     public GameObject PistolShot, ShotgunShot;
@@ -134,13 +134,13 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetButton("Sprint") && GetComponent<PlayerInfo>().currentStamina >= 1)
         {
             GetComponent<PlayerInfo>().running = true;
-            maxSpeed = 25;
+            moveSpeed = 15;
         }
 
         else
         {
             GetComponent<PlayerInfo>().running = false;
-            maxSpeed = 5f;
+            moveSpeed = 50f;
         }
 
         //input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));

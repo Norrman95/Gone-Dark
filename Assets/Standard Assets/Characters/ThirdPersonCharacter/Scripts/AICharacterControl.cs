@@ -10,7 +10,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
     {
         public NavMeshAgent agent { get; private set; }             // the navmesh agent required for the path finding
         public ThirdPersonCharacter character { get; private set; } // the character we are controlling
-        public Transform target;
+        //public Transform player;
+        private GameObject player;
         // target to aim for
         public static float Sight_Width;
         public static float Sight_Range;
@@ -24,7 +25,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             agent.enabled = false;
             agent.updateRotation = false;
             agent.updatePosition = true;
-
+            player = GameObject.Find("Player");
 
             Sight_Range = 5;
             Sight_Width = 90;
@@ -37,8 +38,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 
         private void Update()
         {
-            if (target != null)
-                agent.SetDestination(target.position);
+            if (player != null)
+                agent.SetDestination(player.transform.position);
 
             if (CanSeePlayer() == true)
             {
@@ -53,15 +54,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Vector3 startVecFwd = transform.forward;
 
             RaycastHit hit;
-            Vector3 rayDirection = target.transform.position - startVec;
+            Vector3 rayDirection = player.transform.position - startVec;
             Debug.DrawRay(transform.position, rayDirection);
 
-            if ((Vector3.Angle(rayDirection, startVecFwd)) < 360 && (Vector3.Distance(startVec, target.transform.position) <= 5))
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < 360 && (Vector3.Distance(startVec, player.transform.position) <= 5))
             {
                 return true;
             }
 
-            if ((Vector3.Angle(rayDirection, startVecFwd)) < Sight_Width && (Vector3.Distance(startVec, target.transform.position) <= Sight_Range))
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < Sight_Width && (Vector3.Distance(startVec, player.transform.position) <= Sight_Range))
                 if (Physics.Raycast(startVec, rayDirection, out hit, 100f))
                 {
                     if (hit.transform.tag == "Player")
@@ -72,9 +73,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             return false;
         }
 
-        public void SetTarget(Transform target)
-        {
-            this.target = target;
-        }
+       
     }
 }

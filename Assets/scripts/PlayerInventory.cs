@@ -11,7 +11,6 @@ using UnityEngine.SceneManagement;
 public class PlayerInventory : MonoBehaviour
 {
     public bool pistol, shotgun, axe;
-    public bool carriesShotgun;
     public bool yellowKeycard, blueKeycard, redKeycard;
     
     public int pistolMag, totalShells;
@@ -57,7 +56,6 @@ public class PlayerInventory : MonoBehaviour
         PlayerPrefs.SetInt("currentpistolAmmo", currentpistolAmmo);
         PlayerPrefs.SetInt("currentShells", currentShells);
         PlayerPrefs.SetInt("medkitAmount", medkitAmount);
-        PlayerPrefs.SetInt("carriesShotgun", (carriesShotgun ? 1 : 0));
         PlayerPrefs.SetInt("yellowKeycard", (yellowKeycard ? 1 : 0));
         PlayerPrefs.SetInt("blueKeycard", (blueKeycard ? 1 : 0));
         PlayerPrefs.SetInt("redKeycard", (redKeycard ? 1 : 0));
@@ -75,7 +73,6 @@ public class PlayerInventory : MonoBehaviour
         axe = (PlayerPrefs.GetInt("axe") != 0);
         shotgun = (PlayerPrefs.GetInt("shotgun") != 0);
         pistol = (PlayerPrefs.GetInt("pistol") != 0);
-        carriesShotgun = (PlayerPrefs.GetInt("carriesShotgun") != 0);
         redKeycard = (PlayerPrefs.GetInt("redKeycard") != 0);
         blueKeycard = (PlayerPrefs.GetInt("blueKeycard") != 0);
         yellowKeycard = (PlayerPrefs.GetInt("yellowKeycard") != 0);

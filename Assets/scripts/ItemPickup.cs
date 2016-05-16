@@ -39,12 +39,6 @@ public class ItemPickup : MonoBehaviour
 
     void Pickup(Collider other)
     {
-        if (shotgun)
-        {
-            other.GetComponent<PlayerInventory>().carriesShotgun = true;
-            pickedUp = true;
-        }
-
         if (pistolMag)
         {
             other.GetComponent<PlayerInventory>().pistolMag += pistolMagAmount;

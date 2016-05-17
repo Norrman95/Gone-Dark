@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     public Texture texboxControlmap;
     public Texture texboxVolume;
     public Texture texboxControls;
-    private pause getpause;
+    public pause getpause;
     public bool started;
     UIscript image;
     private bool firstMenu = true;
@@ -23,13 +23,25 @@ public class MainMenu : MonoBehaviour
     Vector3 StartPos;
     public Texture texBox;
     public float ingameVolume = 0.0f;
+    private GameObject currentPlayer;
 
+
+
+    //public void Awake()
+    //{
+    //    if (FindObjectsOfType(GetType()).Length > 1)
+    //    {
+    //        DestroyObject(currentPlayer);
+            
+    //    }
+    //}
 
 
 
     void Start()
     {
-       
+
+
         loadInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
         loadInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
         content = new GUIContent("", texBox, "");
@@ -37,6 +49,8 @@ public class MainMenu : MonoBehaviour
         content3 = new GUIContent("", texboxControls, "The standard controls");
         content4 = new GUIContent("", texboxControlmap, "");
         image = GameObject.Find("InventoryScreen").GetComponent<UIscript>();
+        currentPlayer = GameObject.Find("Player");
+        getpause = GameObject.Find("PauseObject").GetComponent<pause>();
 
     }
 
@@ -44,6 +58,8 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         GameObject.Find("Player").transform.position = StartPos;
+
+
 
     }
 
@@ -65,8 +81,9 @@ public class MainMenu : MonoBehaviour
             if (GUI.Button(new Rect(875, Screen.height / 2 - 120, 150, 25), "New Game"))
             {
                
-                SceneManager.LoadScene("intro scene");
-
+                    SceneManager.LoadScene("intro scene");
+                    
+               
 
             }
 

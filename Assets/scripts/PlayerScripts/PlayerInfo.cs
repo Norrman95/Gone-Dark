@@ -13,22 +13,47 @@ public class PlayerInfo : MonoBehaviour
     private int maxHP = 50;
     private int maxStamina = 200;
     public bool running = false;
-    public string sceneID;
+    public int sceneID;
     public float positionX, positionY, positionZ;
-   
+    Scene GetScene;
+
+    public Scene Scene
+    {
+        get
+        {
+            return GetScene;
+        }
+
+        set
+        {
+            GetScene = value;
+        }
+    }
+
+    public void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
         Debug.Log(currentStamina);
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
 
     }
-  
+
     void Update()
     {
+       
 
+        sceneID = SceneManager.GetActiveScene().buildIndex;
 
-        sceneID = SceneManager.GetActiveScene().name;
+       
         if (Input.GetKeyDown(KeyCode.L))
         {
 
@@ -70,22 +95,28 @@ public class PlayerInfo : MonoBehaviour
         PlayerPrefs.SetFloat("positionZ", transform.position.z);
         PlayerPrefs.SetInt("currentHP", currentHP);
         PlayerPrefs.SetInt("currentStamina", currentStamina);
-        // PlayerPrefs.SetString("sceneID", sceneID);
+        PlayerPrefs.SetInt("sceneID", sceneID);
         PlayerPrefs.Save();
 
 
     }
+
+    public void loadScene()
+    {
+        
+        //SceneManager.SetActiveScene(GetScene.buildIndex); 
+    }
+
     public void LoadInfo()
     {
-
-
+        sceneID = PlayerPrefs.GetInt("sceneID");
+        loadScene();
         currentHP = PlayerPrefs.GetInt("currentHP");
         currentStamina = PlayerPrefs.GetInt("currentStamina");
-        sceneID = PlayerPrefs.GetString("sceneID");
+
         positionX = PlayerPrefs.GetFloat("positionX");
         positionY = PlayerPrefs.GetFloat("positionY");
         positionZ = PlayerPrefs.GetFloat("positionZ");
-        //  SceneManager.LoadScene(sceneID);
         transform.position = new Vector3(positionX, positionY, positionZ);
 
 

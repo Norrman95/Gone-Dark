@@ -9,9 +9,20 @@ public class UIinfo : MonoBehaviour
     PlayerInventory inv;
     UIscript ui;
 
+    public void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        if (FindObjectsOfType(GetType()).Length > 6)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+       
 
         ui = GameObject.Find("Player").GetComponent<UIscript>();
         inv = GameObject.Find("Player").GetComponent<PlayerInventory>();

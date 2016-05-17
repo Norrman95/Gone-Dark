@@ -12,6 +12,9 @@ public class UIscript : MonoBehaviour
     public bool open = false;
     public bool started = false;
 
+   
+
+
     void Start()
     {
         menu = GameObject.Find("Canvas").gameObject.GetComponent<MainMenu>();

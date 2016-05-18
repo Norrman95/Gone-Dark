@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
     private PlayerInfo loadInfo;
     Vector3 StartPos;
     public Texture texBox;
-    public float ingameVolume = 0.0f;
+    public float ingameVolume;
     private GameObject currentPlayer;
 
 
@@ -82,6 +82,7 @@ public class MainMenu : MonoBehaviour
             {
                
                     SceneManager.LoadScene("intro scene");
+                   getpause.canpause = true;
                     
                
 
@@ -120,9 +121,9 @@ public class MainMenu : MonoBehaviour
             GUI.Box(new Rect(500, 100, content2.image.width, content2.image.height), content2);
             GUI.Box(new Rect(1200, 100, content2.image.width, content2.image.height), content3);
             GUI.Box(new Rect(825, 175, content4.image.width, content4.image.height), content4);
-            ingameVolume = AudioListener.volume;
-            ingameVolume = GUI.HorizontalSlider(new Rect(500, 175, 100, 50), ingameVolume, 0.0f, 10.0f);
-
+            
+            ingameVolume = GUI.HorizontalSlider(new Rect(500, 175, 100, 50), ingameVolume, 0.0f, 1.0f);
+            AudioListener.volume = ingameVolume;
             if (GUI.Button(new Rect(875, 800, 150, 25), "Back"))
             {
                 optionsMenu = false;

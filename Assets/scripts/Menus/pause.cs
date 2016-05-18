@@ -12,7 +12,7 @@ public class pause : MonoBehaviour
     public PlayerInventory savInv;
     public animationStatesSwitch rotation;
     public GameObject currentPlayer;
-   
+
     private FlashlightStatus flashlight;
     private GameObject UI;
     DoorScript[] Door = new DoorScript[1];
@@ -29,13 +29,13 @@ public class pause : MonoBehaviour
             Destroy(gameObject);
         }
 
-        raycube = GameObject.FindWithTag("RaycastCube");
+
     }
 
 
     void Start()
     {
-
+        raycube = GameObject.FindWithTag("RaycastCube");
         Item[0] = GameObject.Find("Item").GetComponent<ItemPickup>();
         Item[1] = GameObject.Find("Item1").GetComponent<ItemPickup>();
         Door[0] = GameObject.Find("Door").GetComponent<DoorScript>();
@@ -43,7 +43,7 @@ public class pause : MonoBehaviour
         Enemy[1] = GameObject.Find("Enemy1").GetComponent<EnemyHP>();
         Enemy[2] = GameObject.Find("Enemy Alarm").GetComponent<EnemyHP>();
         currentPlayer = GameObject.Find("Player");
-       
+
         savInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
         save = GameObject.Find("Player").GetComponent<PlayerInfo>();
         animate = GameObject.Find("walkSpritesheet_0").GetComponent<Animator>();
@@ -60,28 +60,29 @@ public class pause : MonoBehaviour
     void Update()
     {
 
-        
 
 
-        if (SceneManager.GetActiveScene().name == "Main Menu")
-        {
-            canpause = true;
-           
-        }
+
+        //if (SceneManager.GetActiveScene().name == "Main Menu")
+        //{
+        //    canpause = true;
+        //}
 
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+
             if (canpause)
             {
 
                 Time.timeScale = 0;
                 canpause = false;
                 raycube.SetActive(false);
+
                 flashlight.enabled = false;
             }
             else
-            {         
+            {
                 Time.timeScale = 1;
                 canpause = true;
                 raycube.SetActive(true);
@@ -134,8 +135,8 @@ public class pause : MonoBehaviour
             {
 
                 SceneManager.LoadScene("Main Menu");
-                 DestroyObject(raycube);
-                
+                //    DestroyObject(raycube);
+
 
             }
 

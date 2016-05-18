@@ -12,11 +12,16 @@ public class FollowPlayer : MonoBehaviour {
     public void Awake()
     {
         DontDestroyOnLoad(this);
-
-        if (FindObjectsOfType(GetType()).Length > 1)
+        if(Resources.FindObjectsOfTypeAll(GetType()).Length > 2)
         {
             Destroy(gameObject);
         }
+       
+
+        //if (FindObjectsOfType(GetType()).Length > 1)
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
 

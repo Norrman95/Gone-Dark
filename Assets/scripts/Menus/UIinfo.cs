@@ -9,15 +9,7 @@ public class UIinfo : MonoBehaviour
     PlayerInventory inv;
     UIscript ui;
 
-    public void Awake()
-    {
-        DontDestroyOnLoad(this);
-
-        if (FindObjectsOfType(GetType()).Length > 6)
-        {
-            Destroy(gameObject);
-        }
-    }
+    
 
 
     void Start()

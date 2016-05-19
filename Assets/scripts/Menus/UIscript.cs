@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIscript : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class UIscript : MonoBehaviour
     public bool open = false;
     public bool started = false;
 
-   
+
 
 
     void Start()
@@ -42,7 +43,15 @@ public class UIscript : MonoBehaviour
 
     void Update()
     {
-        if (started)
+        
+        if (SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            Color c = image[7].color;
+            c.a = 0;
+            image[7].color = c;
+        }
+
+        if (started && SceneManager.GetActiveScene().name != "Main Menu")
         {
             if (Input.GetKeyDown(KeyCode.B))
             {
@@ -73,7 +82,9 @@ public class UIscript : MonoBehaviour
             {
                 text[i].gameObject.SetActive(true);
             }
-            image[7].gameObject.SetActive(false);
+                image[7].gameObject.SetActive(false);
+            
+
 
             if (playerInv.GetComponent<PlayerInventory>().redKeycard)
             {
@@ -99,7 +110,8 @@ public class UIscript : MonoBehaviour
             {
                 text[i].gameObject.SetActive(false);
             }
-            image[7].gameObject.SetActive(true);
+            
+                image[7].gameObject.SetActive(true);
         }
     }
 }

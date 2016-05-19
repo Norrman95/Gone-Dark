@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     public Texture texboxVolume;
     public Texture texboxControls;
     public pause getpause;
-    public bool started;
+    public bool started = false;
     UIscript image;
     private bool firstMenu = true;
     private bool levelSelectMenu = false;
@@ -24,23 +24,29 @@ public class MainMenu : MonoBehaviour
     public Texture texBox;
     public float ingameVolume;
     private GameObject currentPlayer;
+    private Camera menuCam;
+    private Camera mainCam;
 
 
+    public void Awake()
+    {
+        DontDestroyOnLoad(this);
 
-    //public void Awake()
-    //{
-    //    if (FindObjectsOfType(GetType()).Length > 1)
-    //    {
-    //        DestroyObject(currentPlayer);
-            
-    //    }
-    //}
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
 
+
+    }
 
 
     void Start()
     {
 
+
+        //menuCam.enabled = true;
+        //mainCam.enabled = false;
 
         loadInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
         loadInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
@@ -68,23 +74,30 @@ public class MainMenu : MonoBehaviour
 
     void OnGUI()
     {
-        FirstMenu();
-        Options();
+        if (SceneManager.GetActiveScene().name == "Main Menu" && !started)
+        {
+            FirstMenu();
+            Options();
+        }
+
+
+
 
     }
 
 
     void FirstMenu()
     {
+
         if (firstMenu && optionsMenu != true)
         {
             if (GUI.Button(new Rect(875, Screen.height / 2 - 120, 150, 25), "New Game"))
             {
-               
-                    SceneManager.LoadScene("intro scene");
-                   getpause.canpause = true;
-                    
-               
+
+                SceneManager.LoadScene("intro scene");
+                started = true;
+                
+                gameObject.SetActive(false);
 
             }
 
@@ -109,6 +122,8 @@ public class MainMenu : MonoBehaviour
 
 
         }
+
+
     }
 
 
@@ -121,7 +136,7 @@ public class MainMenu : MonoBehaviour
             GUI.Box(new Rect(500, 100, content2.image.width, content2.image.height), content2);
             GUI.Box(new Rect(1200, 100, content2.image.width, content2.image.height), content3);
             GUI.Box(new Rect(825, 175, content4.image.width, content4.image.height), content4);
-            
+
             ingameVolume = GUI.HorizontalSlider(new Rect(500, 175, 100, 50), ingameVolume, 0.0f, 1.0f);
             AudioListener.volume = ingameVolume;
             if (GUI.Button(new Rect(875, 800, 150, 25), "Back"))

@@ -12,13 +12,14 @@ public class pause : MonoBehaviour
     public PlayerInventory savInv;
     public animationStatesSwitch rotation;
     public GameObject currentPlayer;
-
+    MainMenu hasStarted;
     private FlashlightStatus flashlight;
     private GameObject UI;
     DoorScript[] Door = new DoorScript[1];
     ItemPickup[] Item = new ItemPickup[2];
     EnemyHP[] Enemy = new EnemyHP[3];
     GameObject list;
+    Camera main;
 
     public void Awake()
     {
@@ -35,6 +36,8 @@ public class pause : MonoBehaviour
 
     void Start()
     {
+       
+        hasStarted = GameObject.Find("Canvas").gameObject.GetComponent<MainMenu>();
         raycube = GameObject.FindWithTag("RaycastCube");
         Item[0] = GameObject.Find("Item").GetComponent<ItemPickup>();
         Item[1] = GameObject.Find("Item1").GetComponent<ItemPickup>();
@@ -69,7 +72,7 @@ public class pause : MonoBehaviour
         //}
 
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu")
         {
 
             if (canpause)
@@ -79,18 +82,35 @@ public class pause : MonoBehaviour
                 canpause = false;
                 raycube.SetActive(false);
 
-                flashlight.enabled = false;
+
             }
             else
             {
                 Time.timeScale = 1;
                 canpause = true;
                 raycube.SetActive(true);
-                flashlight.enabled = true;
 
 
             }
+
+
+
+
         }
+
+        if (hasStarted.started)
+        {
+            Time.timeScale = 1;
+            canpause = true;
+            raycube.SetActive(true);
+            rotation.pistolDown = true;
+            
+        }
+        hasStarted.started = false;
+        
+
+
+
     }
 
     void OnGUI()
@@ -133,8 +153,10 @@ public class pause : MonoBehaviour
 
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 175, 250, 50), "Exit Game To Main Menu"))
             {
-
                 SceneManager.LoadScene("Main Menu");
+                hasStarted.gameObject.SetActive(true);
+
+                hasStarted.started = false;
                 //    DestroyObject(raycube);
 
 

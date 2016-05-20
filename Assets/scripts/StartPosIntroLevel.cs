@@ -6,13 +6,13 @@ public class StartPosIntroLevel : MonoBehaviour
 {
     Image image;
     private Vector3 startPos;
-    UIscript start;
+    InventoryUi start;
 
     void Start()
     {
         startPos = new Vector3(0.5f, 16, -50);
         GameObject.Find("Player").transform.position = startPos;
-        start = GameObject.Find("Player").GetComponent<UIscript>();
+        start = GameObject.Find("Player").GetComponent<InventoryUi>();
 
 
         image = GameObject.Find("BackpackIcon").GetComponent<Image>();
@@ -26,7 +26,7 @@ public class StartPosIntroLevel : MonoBehaviour
 
     void Update()
     {
-        start.GetComponent<UIscript>().started = true;
+        start.GetComponent<InventoryUi>().started = true;
 
     }
 }

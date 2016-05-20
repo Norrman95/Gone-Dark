@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyHP : MonoBehaviour 
+public class EnemyStats : MonoBehaviour 
 {
     public int currentHp;
     public bool Killed;

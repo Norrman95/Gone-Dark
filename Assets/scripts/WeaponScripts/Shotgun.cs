@@ -5,16 +5,10 @@ public class Shotgun : Weapon
 {
     public GameObject shot;
 
-	void Start ()
-    {
-        base.Start(shot, 9, 0);
-	}
-
 	void Update () 
     {
         ShellReload(ref GetComponent<PlayerInventory>().totalShells, ref GetComponent<PlayerInventory>().currentShells, 5);
-        Fire(ref GetComponent<PlayerInventory>().currentShells, 15);
-        AvailableAction(GetComponent<PlayerInventory>().shotgun, GetComponent<PlayerInventory>().currentShells);
+        Fire(shot, GetComponent<PlayerInventory>().shotgun, ref GetComponent<PlayerInventory>().currentShells, 0, 9, 15);
 	}
 
     public void ShellReload(ref int totalShells, ref int currentShells, int ReloadTime)

@@ -17,11 +17,6 @@ public class PlayerInventory : MonoBehaviour
     public int currentpistolAmmo, currentShells;
     public int medkitAmount;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         Swapweapons();

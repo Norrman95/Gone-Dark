@@ -6,20 +6,34 @@ public class pause : MonoBehaviour
 {
     public bool canpause;
     private GameObject raycube;
-    private Animator animate;
-    private GUIContent content;
-    public PlayerInfo save;
+    public PlayerStats save;
     public PlayerInventory savInv;
     public animationStatesSwitch rotation;
-    public GameObject currentPlayer;
     MainMenu hasStarted;
-    private FlashlightStatus flashlight;
-    private GameObject UI;
-    DoorScript[] Door = new DoorScript[1];
+    DoorFunction[] Door = new DoorFunction[4];
     ItemPickup[] Item = new ItemPickup[2];
-    EnemyHP[] Enemy = new EnemyHP[3];
-    GameObject list;
-    Camera main;
+    EnemyStats[] Enemy = new EnemyStats[7];
+
+    //public int sceneID;
+    //Scene GetScene;
+
+    //public Scene Scene
+    //{
+
+    //    get
+    //    {
+    //        return GetScene;
+    //    }
+
+    //    set
+    //    {
+    //        GetScene = value;
+    //    }
+
+    //    sceneID = SceneManager.GetActiveScene().buildIndex;
+    //    PlayerPrefs.SetInt("sceneID", sceneID);
+    //    sceneID = PlayerPrefs.GetInt("sceneID");
+    //}
 
     public void Awake()
     {
@@ -29,73 +43,60 @@ public class pause : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
 
 
     void Start()
     {
-       
         hasStarted = GameObject.Find("Canvas").gameObject.GetComponent<MainMenu>();
         raycube = GameObject.FindWithTag("RaycastCube");
-        Item[0] = GameObject.Find("Item").GetComponent<ItemPickup>();
-        Item[1] = GameObject.Find("Item1").GetComponent<ItemPickup>();
-        Door[0] = GameObject.Find("Door").GetComponent<DoorScript>();
-        Enemy[0] = GameObject.Find("Enemy").GetComponent<EnemyHP>();
-        Enemy[1] = GameObject.Find("Enemy1").GetComponent<EnemyHP>();
-        Enemy[2] = GameObject.Find("Enemy Alarm").GetComponent<EnemyHP>();
-        currentPlayer = GameObject.Find("Player");
 
         savInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
-        save = GameObject.Find("Player").GetComponent<PlayerInfo>();
-        animate = GameObject.Find("walkSpritesheet_0").GetComponent<Animator>();
+        save = GameObject.Find("Player").GetComponent<PlayerStats>();
         rotation = GameObject.Find("Player/walkSpritesheet_0").GetComponent<animationStatesSwitch>();
-        flashlight = GameObject.Find("Rotation").GetComponent<FlashlightStatus>();
-        UI = GameObject.Find("InventoryScreen");
         canpause = true;
 
 
+        for (int i = 0; i < 5; i++)
+        {
+            string ConvertedString = i.ToString();
+            Item[i] = GameObject.Find("Ammo (" + ConvertedString + ")").GetComponent<ItemPickup>();
+        }
+        for (int i = 5; i < 8; i++)
+        {
+            string ConvertedString = i.ToString();
+            Item[i] = GameObject.Find("Card (" + ConvertedString + ")").GetComponent<ItemPickup>();
+        }
 
+        for (int i = 0; i < Door.Length; i++)
+        {
+            string ConvertedString = i.ToString();
+            Door[i] = GameObject.Find("Door (" + ConvertedString + ")").GetComponent<DoorFunction>();
+        }
 
+        for (int i = 0; i < Enemy.Length; i++)
+        {
+            string ConvertedString = i.ToString();
+            Enemy[i] = GameObject.Find("Enemy (" + ConvertedString + ")").GetComponent<EnemyStats>();
+        }
     }
 
     void Update()
     {
-
-
-
-
-        //if (SceneManager.GetActiveScene().name == "Main Menu")
-        //{
-        //    canpause = true;
-        //}
-
-
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu")
         {
-
             if (canpause)
             {
-
                 Time.timeScale = 0;
                 canpause = false;
                 raycube.SetActive(false);
-
-
             }
             else
             {
                 Time.timeScale = 1;
                 canpause = true;
                 raycube.SetActive(true);
-
-
             }
-
-
-
-
         }
 
         if (hasStarted.started)
@@ -104,13 +105,8 @@ public class pause : MonoBehaviour
             canpause = true;
             raycube.SetActive(true);
             rotation.pistolDown = true;
-            
         }
         hasStarted.started = false;
-        
-
-
-
     }
 
     void OnGUI()
@@ -157,24 +153,7 @@ public class pause : MonoBehaviour
                 hasStarted.gameObject.SetActive(true);
 
                 hasStarted.started = false;
-                //    DestroyObject(raycube);
-
-
             }
-
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

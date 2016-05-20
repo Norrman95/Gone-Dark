@@ -3,10 +3,8 @@ using System.Collections;
 
 public class ItemPickup : MonoBehaviour
 {
-    public bool pistol, shotgun, pistolMag, shotgunAmmo, medkit, redKeycard, blueKeycard, yellowKeycard;
-    public int pistolMagAmount, shotgunAmmoAmount, medkitAmount;
-    private bool canPickUp;
-    public bool pickedUp;
+    public bool pistol, shotgun, pistolMag, shotgunAmmo, medkit, redKeycard, blueKeycard, yellowKeycard, pickedUp;
+    public int Amount;
 
     public void saveItemstatus(int i)
     {
@@ -17,23 +15,12 @@ public class ItemPickup : MonoBehaviour
         pickedUp = (PlayerPrefs.GetInt("pickedUp"+ i) != 0);
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            canPickUp = false;
-        }
-    }
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            canPickUp = true;
-        }
-        if (canPickUp)
-        {
             Pickup(other);
+            pickedUp = true;
         }
     }
 
@@ -41,34 +28,28 @@ public class ItemPickup : MonoBehaviour
     {
         if (pistolMag)
         {
-            other.GetComponent<PlayerInventory>().pistolMag += pistolMagAmount;
-            pickedUp = true;
+            other.GetComponent<PlayerInventory>().pistolMag += Amount;            
         }
         if (shotgunAmmo)
         {
-            other.GetComponent<PlayerInventory>().totalShells += shotgunAmmoAmount;
-            pickedUp = true;
+            other.GetComponent<PlayerInventory>().totalShells += Amount;
         }
         if (medkit)
         {
-            other.GetComponent<PlayerInventory>().medkitAmount += medkitAmount;
-            pickedUp = true;
+            other.GetComponent<PlayerInventory>().medkitAmount += Amount;
         }
 
         if (redKeycard)
         {
             other.GetComponent<PlayerInventory>().redKeycard = true;
-            pickedUp = true;
         }
         if (blueKeycard)
         {
             other.GetComponent<PlayerInventory>().blueKeycard = true;
-            pickedUp = true;
         }
         if (yellowKeycard)
         {
             other.GetComponent<PlayerInventory>().yellowKeycard = true;
-            pickedUp = true;
         }
     }
 }

@@ -10,7 +10,7 @@ public class KillEnemy : MonoBehaviour
 
         if (other.gameObject.tag == "Enemy")
         {
-            other.gameObject.GetComponent<EnemyHP>().AdjustHealth(-Damage);
+            other.gameObject.GetComponent<EnemyStats>().AdjustHealth(-Damage);
         }
     }
 }

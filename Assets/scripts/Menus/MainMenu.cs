@@ -14,12 +14,12 @@ public class MainMenu : MonoBehaviour
     public Texture texboxControls;
     public pause getpause;
     public bool started = false;
-    UIscript image;
+    InventoryUi image;
     private bool firstMenu = true;
     private bool levelSelectMenu = false;
     private bool optionsMenu = false;
     private PlayerInventory loadInv;
-    private PlayerInfo loadInfo;
+    private PlayerStats loadInfo;
     Vector3 StartPos;
     public Texture texBox;
     public float ingameVolume;
@@ -49,12 +49,12 @@ public class MainMenu : MonoBehaviour
         //mainCam.enabled = false;
 
         loadInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
-        loadInfo = GameObject.Find("Player").GetComponent<PlayerInfo>();
+        loadInfo = GameObject.Find("Player").GetComponent<PlayerStats>();
         content = new GUIContent("", texBox, "");
         content2 = new GUIContent("", texboxVolume, "Change the volume");
         content3 = new GUIContent("", texboxControls, "The standard controls");
         content4 = new GUIContent("", texboxControlmap, "");
-        image = GameObject.Find("InventoryScreen").GetComponent<UIscript>();
+        image = GameObject.Find("InventoryScreen").GetComponent<InventoryUi>();
         currentPlayer = GameObject.Find("Player");
         getpause = GameObject.Find("PauseObject").GetComponent<pause>();
 

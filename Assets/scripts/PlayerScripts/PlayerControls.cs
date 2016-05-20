@@ -50,20 +50,20 @@ public class PlayerControls : MonoBehaviour
 
     void UsedMedkit()
     {
-        GetComponent<PlayerInfo>().AdjustHP(20);
+        GetComponent<PlayerStats>().AdjustHP(20);
         GetComponent<PlayerInventory>().medkitAmount -= 1;
     }
 
     void PlayerMovement()
     {
-        if (Input.GetButton("Sprint") && GetComponent<PlayerInfo>().currentStamina >= 1)
+        if (Input.GetButton("Sprint") && GetComponent<PlayerStats>().currentStamina >= 1)
         {
-            GetComponent<PlayerInfo>().running = true;
+            GetComponent<PlayerStats>().running = true;
             moveSpeed = 15;
         }
         else
         {
-            GetComponent<PlayerInfo>().running = false;
+            GetComponent<PlayerStats>().running = false;
             moveSpeed = 30f;
         }
 

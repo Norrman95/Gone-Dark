@@ -20,7 +20,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             agent.updatePosition = true;
             player = GameObject.Find("Player");
 
-            Sight_Range = 0;
+            Sight_Range = 5;
             Sight_Width = 90;
 
             GetComponent<AudioSource>().Play(22000);

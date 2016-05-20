@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoorScript : MonoBehaviour
+public class DoorFunction : MonoBehaviour
 {
     public bool redDoor, blueDoor, yellowDoor, Open;
-    private bool canOpen, inRange;
 
     private PlayerInventory playerInv;
     private int count;
@@ -45,7 +44,6 @@ public class DoorScript : MonoBehaviour
                 {
                     count++;
                 }
-
                 else
                 {
 

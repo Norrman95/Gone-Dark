@@ -9,6 +9,8 @@ public class pause : MonoBehaviour
     public PlayerStats save;
     public PlayerInventory savInv;
     public animationStatesSwitch rotation;
+    rotation getMouse;
+    FollowPlayer checkRaycube;
     MainMenu hasStarted;
     DoorFunction[] Door = new DoorFunction[4];
     ItemPickup[] Item = new ItemPickup[2];
@@ -50,12 +52,12 @@ public class pause : MonoBehaviour
     {
         hasStarted = GameObject.Find("Canvas").gameObject.GetComponent<MainMenu>();
         raycube = GameObject.FindWithTag("RaycastCube");
-
+        checkRaycube = GameObject.Find("RayCube").gameObject.GetComponent<FollowPlayer>();
         savInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
         save = GameObject.Find("Player").GetComponent<PlayerStats>();
         rotation = GameObject.Find("Player/walkSpritesheet_0").GetComponent<animationStatesSwitch>();
         canpause = true;
-
+        getMouse = GameObject.Find("Player/Rotation").GetComponent<rotation>();
 
         for (int i = 0; i < 5; i++)
         {
@@ -89,13 +91,14 @@ public class pause : MonoBehaviour
             {
                 Time.timeScale = 0;
                 canpause = false;
-                raycube.SetActive(false);
+                getMouse.enabled = false;
             }
             else
             {
                 Time.timeScale = 1;
                 canpause = true;
-                raycube.SetActive(true);
+                getMouse.enabled = true;
+                
             }
         }
 
@@ -103,8 +106,9 @@ public class pause : MonoBehaviour
         {
             Time.timeScale = 1;
             canpause = true;
-            raycube.SetActive(true);
             rotation.pistolDown = true;
+            getMouse.enabled = true;
+           
         }
         hasStarted.started = false;
     }
@@ -117,7 +121,8 @@ public class pause : MonoBehaviour
             {
                 Time.timeScale = 1;
                 canpause = true;
-                raycube.SetActive(true);
+                getMouse.enabled = true;
+                
 
 
             }
@@ -151,7 +156,6 @@ public class pause : MonoBehaviour
             {
                 SceneManager.LoadScene("Main Menu");
                 hasStarted.gameObject.SetActive(true);
-
                 hasStarted.started = false;
             }
         }

@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     private GameObject currentPlayer;
     private Camera menuCam;
     private Camera mainCam;
+    
 
 
     public void Awake()
@@ -45,9 +46,8 @@ public class MainMenu : MonoBehaviour
     {
 
 
-        //menuCam.enabled = true;
-        //mainCam.enabled = false;
-
+        
+        
         loadInv = GameObject.Find("Player").GetComponent<PlayerInventory>();
         loadInfo = GameObject.Find("Player").GetComponent<PlayerStats>();
         content = new GUIContent("", texBox, "");
@@ -57,7 +57,7 @@ public class MainMenu : MonoBehaviour
         image = GameObject.Find("InventoryScreen").GetComponent<InventoryUi>();
         currentPlayer = GameObject.Find("Player");
         getpause = GameObject.Find("PauseObject").GetComponent<pause>();
-
+       
     }
 
 
@@ -103,6 +103,10 @@ public class MainMenu : MonoBehaviour
 
             if (GUI.Button(new Rect(875, Screen.height / 2 - 75, 150, 25), "Load Game"))
             {
+                //SceneManager.LoadScene("Level 1");
+
+                
+                currentPlayer.transform.position.Set(loadInfo.positionX, loadInfo.positionY, loadInfo.positionZ);
                 loadInfo.LoadInfo();
                 loadInv.LoadInventory();
 

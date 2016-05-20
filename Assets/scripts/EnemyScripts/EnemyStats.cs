@@ -9,7 +9,12 @@ public class EnemyStats : MonoBehaviour
     public void Update()
     {
         KillEnemy();
+        
     }
+
+    
+
+
 
     public void saveEnemystatus(int i)
     {

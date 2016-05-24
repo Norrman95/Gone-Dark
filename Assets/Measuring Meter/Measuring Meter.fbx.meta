@@ -3,7 +3,14 @@ guid: a9bf13133ff02b445a400dbb5fa84b7d
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
+    100000: //RootNode
+    100002: Meter
+    400000: //RootNode
+    400002: Meter
+    2300000: Meter
+    3300000: Meter
     4300000: Meter
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 3

@@ -10,7 +10,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public NavMeshAgent agent { get; private set; }          
         private GameObject player;
         public static float Sight_Width, Sight_Range;
-
+        public bool Alarm;
 
         private void Start()
         {
@@ -24,6 +24,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Sight_Width = 90;
 
             GetComponent<AudioSource>().Play(22000);
+            Alarm = false;
         }
 
 
@@ -36,6 +37,10 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             {
                 agent.enabled = true;
                 print("he saw ya");
+            }
+            if(Alarm)
+            {
+                agent.enabled = true;
             }
         }
 

@@ -10,7 +10,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public NavMeshAgent agent { get; private set; }          
         private GameObject player;
         public static float Sight_Width, Sight_Range;
-        public bool Alarm;
+
 
         private void Start()
         {
@@ -23,7 +23,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Sight_Range = 5;
             Sight_Width = 90;
 
-            Alarm = false;
             GetComponent<AudioSource>().Play(22000);
         }
 
@@ -40,7 +39,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
         }
 
-        public bool CanSeePlayer()
+        bool CanSeePlayer()
         {
             Vector3 startVec = transform.position;
             Vector3 startVecFwd = transform.forward;
@@ -62,12 +61,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                     else
                         return false;
                 }
-            if (Alarm == true)
-            {
-                return true;
-            }
             return false;
-        }
-             
+        }     
     }
 }

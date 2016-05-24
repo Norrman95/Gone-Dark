@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class pause : MonoBehaviour
 {
+    public bool paused = false;
     public bool canpause;
     private GameObject raycube;
     public PlayerStats save;
@@ -87,6 +88,7 @@ public class pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu")
         {
+            paused = true;
             if (canpause)
             {
                 Time.timeScale = 0;
@@ -98,6 +100,7 @@ public class pause : MonoBehaviour
                 Time.timeScale = 1;
                 canpause = true;
                 getMouse.enabled = true;
+                paused = false;
                 
             }
         }
@@ -108,6 +111,7 @@ public class pause : MonoBehaviour
             canpause = true;
             rotation.pistolDown = true;
             getMouse.enabled = true;
+            paused = false;
            
         }
         hasStarted.started = false;
@@ -122,6 +126,7 @@ public class pause : MonoBehaviour
                 Time.timeScale = 1;
                 canpause = true;
                 getMouse.enabled = true;
+                paused = false;
                 
 
 

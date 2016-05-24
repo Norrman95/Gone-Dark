@@ -7,27 +7,40 @@ public abstract class Weapon : MonoBehaviour
     bool reloading, CurrentWeapon;
     public bool reloaded;
     float nextFire;
+    private pause getpause;
+    private StoryManager getstory;
+
+    void Start()
+    {
+        getpause = GameObject.Find("PauseObject").GetComponent<pause>();
+        getstory = GameObject.Find("PauseObject").GetComponent<StoryManager>();
+    }
 
     public virtual void Fire(GameObject shotType, bool CurrentWeapon, ref int currentAmmo, float fireRate, int projectileAmount, int Spread)
     {
-        if (Input.GetButtonDown("Fire") && Time.time > nextFire)
+        if (!getpause.paused)
         {
-            if (CurrentWeapon && currentAmmo >= 1 && !reloading)
+            if(!getstory.showStory)
+            if (Input.GetButtonDown("Fire") && Time.time > nextFire)
             {
-                currentAmmo -= 1;
-                Quaternion[] Angle = new Quaternion[projectileAmount];
+                if (CurrentWeapon && currentAmmo >= 1 && !reloading)
+                {
+                    currentAmmo -= 1;
+                    Quaternion[] Angle = new Quaternion[projectileAmount];
 
-                GetComponent<AudioSource>().Play();
+                    GetComponent<AudioSource>().Play();
 
-                nextFire = Time.time + fireRate;
+                    nextFire = Time.time + fireRate;
 
-                for (int i = 0; i < projectileAmount; i++)
-                    Angle[i] = (Quaternion.AngleAxis(UnityEngine.Random.Range(-Spread, Spread), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
+                    for (int i = 0; i < projectileAmount; i++)
+                        Angle[i] = (Quaternion.AngleAxis(UnityEngine.Random.Range(-Spread, Spread), new Vector3(0, 1, 0)) * (shotSpawn.rotation));
 
-                for (int i = 0; i < projectileAmount; i++)
-                    Instantiate(shotType, shotSpawn.position, Angle[i]);
+                    for (int i = 0; i < projectileAmount; i++)
+                        Instantiate(shotType, shotSpawn.position, Angle[i]);
+                }
             }
         }
+
     }
 
     public virtual void Reload(int reloadTime)

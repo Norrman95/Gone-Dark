@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class StoryManager : MonoBehaviour
 {
-    public bool showStory = true;
+    private bool showStory = true;
     private bool exited = false;
     private bool showFirst = true;
     private bool showSecond = false;
@@ -26,7 +26,7 @@ public class StoryManager : MonoBehaviour
         textarea = new Rect(Screen.width / 2 - 850, Screen.height / 2 - 300, 400, 300);
         buttonPos = new Rect(Screen.width / 2 - 850, Screen.height / 3 + 150, 150, 25);
         buttonPos2 = new Rect(Screen.width / 2 - 700, Screen.height / 3 + 150, 150, 25);
-        
+        style.fontSize = 1;
 
     }
 

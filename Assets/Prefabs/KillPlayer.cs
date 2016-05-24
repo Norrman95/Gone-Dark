@@ -34,6 +34,7 @@ public class KillPlayer : MonoBehaviour
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 125, 250, 50), "Exit Game To Main Menu"))
             {
                 SceneManager.LoadScene("Main Menu");
+                
             }
         }
 
@@ -54,6 +55,7 @@ public class KillPlayer : MonoBehaviour
 
             if (other.gameObject.GetComponent<PlayerStats>().currentHP <= 0)
             {
+
                 DestroyObject(other.gameObject);
                 dead = true;
 

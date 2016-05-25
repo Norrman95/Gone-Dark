@@ -9,11 +9,14 @@ public abstract class Weapon : MonoBehaviour
     float nextFire;
     private pause getpause;
     private StoryManager getstory;
+    
+    
 
     void Start()
     {
         getpause = GameObject.Find("PauseObject").GetComponent<pause>();
         getstory = GameObject.Find("PauseObject").GetComponent<StoryManager>();
+       
     }
 
     public virtual void Fire(GameObject shotType, bool CurrentWeapon, ref int currentAmmo, float fireRate, int projectileAmount, int Spread)
@@ -29,6 +32,7 @@ public abstract class Weapon : MonoBehaviour
                     Quaternion[] Angle = new Quaternion[projectileAmount];
 
                     GetComponent<AudioSource>().Play();
+
 
                     nextFire = Time.time + fireRate;
 

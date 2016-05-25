@@ -3,9 +3,14 @@ using System.Collections;
 
 public class Shotgun : Weapon
 {
-    public GameObject shot;
+    public GameObject shot; public AudioSource reload;
 
-	void Update () 
+    public void ini()
+    {
+        reload = GameObject.Find("ReloadSound").GetComponent<AudioSource>();
+    }
+
+    void Update () 
     {
         ShellReload(ref GetComponent<PlayerInventory>().totalShells, ref GetComponent<PlayerInventory>().currentShells, 5);
         Fire(shot, GetComponent<PlayerInventory>().shotgun, ref GetComponent<PlayerInventory>().currentShells, 0, 9, 15);
@@ -18,6 +23,8 @@ public class Shotgun : Weapon
         
         if (Input.GetButtonDown("Reload"))
         {
+            ini();
+            reload.Play();
             if (totalShells >= 1 && currentShells != maxShells)
             {
                 Reload(ReloadTime);

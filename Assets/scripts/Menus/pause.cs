@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class pause : MonoBehaviour
 {
+    bool dead = false;
     public bool paused = false;
     public bool canpause;
     private GameObject raycube;
@@ -16,27 +17,10 @@ public class pause : MonoBehaviour
     DoorFunction[] Door = new DoorFunction[4];
     ItemPickup[] Item = new ItemPickup[2];
     EnemyStats[] Enemy = new EnemyStats[7];
+    KillPlayer[] getdeath = new KillPlayer[7];
 
-    //public int sceneID;
-    //Scene GetScene;
 
-    //public Scene Scene
-    //{
 
-    //    get
-    //    {
-    //        return GetScene;
-    //    }
-
-    //    set
-    //    {
-    //        GetScene = value;
-    //    }
-
-    //    sceneID = SceneManager.GetActiveScene().buildIndex;
-    //    PlayerPrefs.SetInt("sceneID", sceneID);
-    //    sceneID = PlayerPrefs.GetInt("sceneID");
-    //}
 
     public void Awake()
     {
@@ -46,6 +30,9 @@ public class pause : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+
+
     }
 
 
@@ -86,7 +73,39 @@ public class pause : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu")
+
+        if (SceneManager.GetActiveScene().name == "Level 1")
+        {
+            for (int i = 0; i < getdeath.Length; i++)
+            {
+                string ConvertedString = i.ToString();
+                getdeath[i] = GameObject.Find("Enemy (" + ConvertedString + ")").GetComponent<KillPlayer>();
+
+                if (getdeath[i].dead && !dead)
+                {
+                    Time.timeScale = 0;
+                    canpause = false;
+                    getMouse.enabled = false;
+                    dead = true;
+                    paused = true;
+                }
+
+            }
+
+
+        }
+
+        if (dead && SceneManager.GetActiveScene().name == "Main Menu")
+        {
+            Time.timeScale = 1;
+            canpause = true;
+            rotation.pistolDown = true;
+            getMouse.enabled = true;
+            paused = false;
+            dead = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != "Main Menu" && !dead)
         {
             paused = true;
             if (canpause)
@@ -101,9 +120,10 @@ public class pause : MonoBehaviour
                 canpause = true;
                 getMouse.enabled = true;
                 paused = false;
-                
+
             }
         }
+
 
         if (hasStarted.started)
         {
@@ -112,14 +132,14 @@ public class pause : MonoBehaviour
             rotation.pistolDown = true;
             getMouse.enabled = true;
             paused = false;
-           
+
         }
         hasStarted.started = false;
     }
 
     void OnGUI()
     {
-        if (!canpause && SceneManager.GetActiveScene().name != "Main Menu")
+        if (!canpause && SceneManager.GetActiveScene().name != "Main Menu" && !dead)
         {
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 25, 250, 50), "Resume"))
             {
@@ -127,7 +147,7 @@ public class pause : MonoBehaviour
                 canpause = true;
                 getMouse.enabled = true;
                 paused = false;
-                
+
 
 
             }

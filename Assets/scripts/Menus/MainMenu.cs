@@ -101,16 +101,8 @@ public class MainMenu : MonoBehaviour
 
             }
 
-            if (GUI.Button(new Rect(875, Screen.height / 2 - 75, 150, 25), "Load Game"))
-            {
-                //SceneManager.LoadScene("Level 1");
-
-
-                currentPlayer.transform.position.Set(loadInfo.positionX, loadInfo.positionY, loadInfo.positionZ);
-                loadInfo.LoadInfo();
-                loadInv.LoadInventory();
-
-            }
+           
+            
 
             if (GUI.Button(new Rect(875, Screen.height / 2 - 50, 150, 25), "Settings"))
             {

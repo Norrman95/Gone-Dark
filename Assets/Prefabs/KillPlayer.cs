@@ -56,7 +56,7 @@ public class KillPlayer : MonoBehaviour
             if (other.gameObject.GetComponent<PlayerStats>().currentHP <= 0)
             {
 
-                DestroyObject(other.gameObject);
+                
                 dead = true;
 
             }

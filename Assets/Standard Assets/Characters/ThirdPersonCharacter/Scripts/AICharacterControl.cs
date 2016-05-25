@@ -20,11 +20,11 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             agent.updatePosition = true;
             player = GameObject.Find("Player");
 
-            Sight_Range = 5;
+            Sight_Range = 0;
             Sight_Width = 90;
 
-            Alarm = false;
             GetComponent<AudioSource>().Play(22000);
+            Alarm = false;
         }
 
 
@@ -38,9 +38,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 agent.enabled = true;
                 print("he saw ya");
             }
+            if(Alarm)
+            {
+                agent.enabled = true;
+            }
         }
 
-        public bool CanSeePlayer()
+        bool CanSeePlayer()
         {
             Vector3 startVec = transform.position;
             Vector3 startVecFwd = transform.forward;
@@ -49,7 +53,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Vector3 rayDirection = player.transform.position - startVec;
             Debug.DrawRay(transform.position, rayDirection);
 
-            if ((Vector3.Angle(rayDirection, startVecFwd)) < 360 && (Vector3.Distance(startVec, player.transform.position) <= 5))
+            if ((Vector3.Angle(rayDirection, startVecFwd)) < 360 && (Vector3.Distance(startVec, player.transform.position) <= 0))
             {
                 return true;
             }
@@ -62,12 +66,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                     else
                         return false;
                 }
-            if (Alarm == true)
-            {
-                return true;
-            }
             return false;
-        }
-             
+        }     
     }
 }

@@ -1,0 +1,56 @@
+﻿Revert "Merge remote-tracking branch 'origin/master'"
+
+This reverts commit 1ff9743bd72b5644cd21a855589eee68d49df113, reversing
+changes made to 733ce5b33dfd45424b5f28f75030c90617adba49.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   Assets/Enemy Alarm.prefab
+#	modified:   Assets/Enemy.prefab
+#	modified:   Library/ShaderCache.db
+#	modified:   Library/UnityAssemblies/UnityEditor.Advertisements.dll
+#	modified:   Library/UnityAssemblies/UnityEditor.EditorTestsRunner.dll
+#	modified:   Library/UnityAssemblies/UnityEditor.Graphs.dll
+#	modified:   Library/UnityAssemblies/UnityEditor.Networking.dll
+#	modified:   Library/UnityAssemblies/UnityEditor.TreeEditor.dll
+#	modified:   Library/UnityAssemblies/UnityEditor.UI.dll
+#	modified:   Library/UnityAssemblies/UnityEditor.WindowsStandalone.Extensions.dll
+#	modified:   Library/metadata/01/01e5f4d74e5224244b914acb5bbda527.info
+#	modified:   Library/metadata/0d/0d6963fbaf9eac64eb05b22f13daaf5e.info
+#	modified:   Library/metadata/18/18a1a2cebb075264dbcc42c4ad192a67.info
+#	modified:   Library/metadata/23/23a02ac18d11c9ffa0009c58a8ad6659.info
+#	modified:   Library/metadata/2c/2cf6c8d8665788e4a9ffcd0e1b599526.info
+#	modified:   Library/metadata/35/35d24c74529a8f743a79d134e2959132.info
+#	modified:   Library/metadata/4b/4b055ffdc3e908140a95e7ffe7b9fac0.info
+#	modified:   Library/metadata/4e/4e0836a72f556d245a45eafcb2369fa6.info
+#	modified:   Library/metadata/51/51dc82ef9d11c594d000e7c9e39e7c39.info
+#	modified:   Library/metadata/62/621e901dcf5ebaf46bce29d18f67194c.info
+#	modified:   Library/metadata/67/67db42db50b94e54da438d32f8a9e7ac.info
+#	modified:   Library/metadata/71/7148cf604d95777478675b23a78a368e.info
+#	modified:   Library/metadata/7a/7a632f967e8ad42f5bd275898151ab6a.info
+#	modified:   Library/metadata/86/8625117c8c71fd948a7e8aba8700d9cb.info
+#	modified:   Library/metadata/87/876b72ec6a2991b4ebccd8a6927444d6.info
+#	modified:   Library/metadata/8a/8ab1481a1eb46a348b0d665d83d0d8d9.info
+#	modified:   Library/metadata/8d/8d08359bcd81e204a8965b2f070297df.info
+#	modified:   Library/metadata/96/96b9fb21fa852cf4fae54e77d59d59b4.info
+#	modified:   Library/metadata/9c/9c37b976e488b6a4e9dac2b51601fa0f.info
+#	modified:   Library/metadata/a4/a4cdca73d61814d33ac1587f6c163bca.info
+#	modified:   Library/metadata/a6/a6dbb96b9d112024d000e929e39e7c39.info
+#	modified:   Library/metadata/bb/bba1968d80456dc448723e16260f2a0b.info
+#	modified:   Library/metadata/c1/c12f2315219c0ab4cb69cdd0474cff4e.info
+#	modified:   Library/metadata/c3/c3d66a8056f9db345b1ea380aa7e815d.info
+#	modified:   Library/metadata/c4/c4cf1acda25fb9f43b2e9f49ae0457d4.info
+#	modified:   Library/metadata/c9/c95876da042f12e49a86d373f8b91a20.info
+#	modified:   Library/metadata/d6/d626a4855f9d40948a2441b72a286696.info
+#	modified:   Library/metadata/d9/d9f61d93dc3ffc84d90f015e3aa04e46.info
+#	modified:   Library/metadata/dc/dc48ef28f527f3e448708b650fd9fac0.info
+#	modified:   Library/metadata/e8/e83d037982569794aaa71aa921fce526.info
+#	modified:   Library/metadata/f6/f62b52b2d4b721742a0bc5c6b4db468d.info
+#	modified:   Library/metadata/fc/fc00ec05a89da4ff695a4273715cd5ce.info
+#	modified:   Library/shadercompiler-UnityShaderCompiler.exe0.log
+#
+

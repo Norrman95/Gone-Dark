@@ -1,31 +1,37 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Alarm : MonoBehaviour
 {
-    public AICharacterControl[] Enemy = new AICharacterControl[7];
+    public GameObject[] enemy;
+    private AICharacterControl aicharactercontrol;
+
 
     void Start()
     {
-        for (int i = 0; i < Enemy.Length; i++)
-        {
-            string ConvertedString = i.ToString();
-            Enemy[i] = GameObject.Find("Enemy (" + ConvertedString + ")").GetComponent<AICharacterControl>();
-        }
+        enemy = GameObject.FindGameObjectsWithTag("Enemy");
+
+
+
     }
     void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.tag == "Player")
         {
-            for (int i = 0; i < Enemy.Length; i++)
+            for (int i = 0; i < enemy.Length; i++)
             {
-                if (Vector3.Distance(transform.position, Enemy[i].transform.position) < 50)
+                if (Vector3.Distance(transform.position, enemy[i].transform.position) < 10)
                 {
-                    Enemy[i].Alarm = true;
+
+                    enemy[i].GetComponent<AICharacterControl>().Alarm=true;
+                    //enemy[i].GetComponent<AICharacterControl>().agent.enabled = true;
+                    Debug.Log("collide and enemy nearby");
+
                 }
+
             }
         }
     }
 }
-

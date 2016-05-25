@@ -23,8 +23,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Sight_Range = 5;
             Sight_Width = 90;
 
-            GetComponent<AudioSource>().Play(22000);
             Alarm = false;
+            GetComponent<AudioSource>().Play(22000);
         }
 
 
@@ -38,13 +38,9 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 agent.enabled = true;
                 print("he saw ya");
             }
-            if(Alarm)
-            {
-                agent.enabled = true;
-            }
         }
 
-        bool CanSeePlayer()
+        public bool CanSeePlayer()
         {
             Vector3 startVec = transform.position;
             Vector3 startVecFwd = transform.forward;
@@ -66,7 +62,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                     else
                         return false;
                 }
+            if (Alarm == true)
+            {
+                return true;
+            }
             return false;
-        }     
+        }
+             
     }
 }

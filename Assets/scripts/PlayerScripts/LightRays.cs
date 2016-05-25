@@ -23,8 +23,8 @@ public class LightRays : MonoBehaviour
 
     void increaseRange()
     {
-        AICharacterControl.Sight_Range = 100;
-        AICharacterControl.Sight_Width = 180;
+        AICharacterControl.Sight_Range =50;
+        AICharacterControl.Sight_Width = 90;
     }
 
     bool Rays()

@@ -195,189 +195,72 @@ public class animationStatesSwitch : MonoBehaviour
                 {
                     anim.Play("IDle S");
 
+                }
 
-
-                    if (angle < 110 && angle > 80 && movement == true)
-                    {
-                        anim.Play("Back");
-
-
-                    }
-                    else if (angle < 110 && angle > 80)
-                    {
-                        anim.Play("Idle Back");
-                    }
-
-
-                    if (angle < 80 && angle > 30 && movement == true)
-                    {
-                        anim.Play("Halv-Side");
-
-                    }
-
-                    else if (angle < 80 && angle > 30)
-                    {
-                        anim.Play("Idle Halv Back");
-
-                    }
-
-                    if (angle < 30 && angle > 0 && movement == true)
-                    {
-                        anim.Play("Side");
-
-                    }
-
-                    else if (angle < 30 && angle > 0)
-                    {
-                        anim.Play("IDle S");
-
-                    }
-
-                    if (angle < 0 && angle > -25 && movement == true)
-                    {
-                        anim.Play("Halv-Front");
-
-                    }
-
-                    else if (angle < 0 && angle > -25)
-                    {
-                        anim.Play("Idle Halv Front");
-
-                    }
-
-                    if (angle < -25 && angle > -110 && movement == true)
-                    {
-                        anim.Play("Front");
-
-                    }
-
-                    else if (angle < -25 && angle > -110)
-                    {
-                        anim.Play("Idle Front");
-
-                    }
-
-
-                    if (angle < -110 && angle > -140 && movement == true)
-                    {
-                        anim.Play("Flipped Halv-Front");
-
-                    }
-                    else if (angle < -110 && angle > -140)
-                    {
-                        anim.Play("Flipped Idle Halv Front");
-
-                    }
-
-                    if (angle < -140 && angle > -170 && movement == true)
-                    {
-                        anim.Play("Flipped Side");
-
-                    }
-
-                    else if (angle < -140 && angle > -170)
-                    {
-                        anim.Play("Flipped Idle Side");
-
-                    }
-                    if (angle < 170 && angle > 110 && movement == true)
-                    {
-                        anim.Play("Flipped Halv-Side");
-
-                    }
-
-                    else if (angle < 170 && angle > 110)
-                    {
-                        anim.Play("Flipped Idle Halv Back");
-
-                    }
-
-
-
-                    if (angle < 0 && angle > -25 && movement == true)
-                    {
-                        anim.Play("Shotgun Halv Front");
-
-                    }
-
-                    else if (angle < 0 && angle > -25)
-                    {
-                        anim.Play("Idle Halv Front");
-
-                    }
-
-                    if (angle < -25 && angle > -110 && movement == true)
-                    {
-                        anim.Play("Shotgun Front");
-
-                    }
-
-                    else if (angle < -25 && angle > -110)
-                    {
-                        anim.Play("Idle Front");
-
-                    }
-
-
-                    if (angle < -110 && angle > -140 && movement == true)
-                    {
-                        anim.Play("Shotgun Flipped Halv Front");
-
-                    }
-                    else if (angle < -110 && angle > -140)
-                    {
-                        anim.Play("Flipped Idle Halv Front");
-
-                    }
-
-                    if (angle < -140 && angle > -170 && movement == true)
-                    {
-                        anim.Play("Shotgun Flipped Side");
-
-                    }
-
-                    else if (angle < -140 && angle > -170)
-                    {
-                        anim.Play("Flipped Idle Side");
-
-                    }
-                    if (angle < 170 && angle > 110 && movement == true)
-                    {
-                        anim.Play("Shotgun Flipped Halv Back");
-
-                    }
-
-                    else if (angle < 170 && angle > 110)
-                    {
-                        anim.Play("Flipped Idle Halv Back");
-
-                    }
-
+                if (angle < 0 && angle > -25 && movement == true)
+                {
+                    anim.Play("Shotgun Halv Front");
 
                 }
-                // Debug.Log(angle);
+
+                else if (angle < 0 && angle > -25)
+                {
+                    anim.Play("Idle Halv Front");
+
+                }
+
+                if (angle < -25 && angle > -110 && movement == true)
+                {
+                    anim.Play("Shotgun Front");
+
+                }
+
+                else if (angle < -25 && angle > -110)
+                {
+                    anim.Play("Idle Front");
+
+                }
 
 
+                if (angle < -110 && angle > -140 && movement == true)
+                {
+                    anim.Play("Shotgun Flipped Halv-Front");
 
+                }
+                else if (angle < -110 && angle > -140)
+                {
+                    anim.Play("Flipped Idle Halv Front");
 
-                //if (!Input.GetKeyDown("1") || !Input.GetKeyDown("2"))
-                //{
-                //    beginDown = true;
+                }
 
-                //}
+                if (angle < -140 && angle > -170 && movement == true)
+                {
+                    anim.Play("Shotgun Flipped Side");
 
+                }
 
+                else if (angle < -140 && angle > -170)
+                {
+                    anim.Play("Flipped Idle Side");
 
+                }
+
+                if (angle < 170 && angle > 110 && movement == true)
+                {
+                    anim.Play("Shotgun Flipped Halv Back");
+
+                }
+
+                else if (angle < 170 && angle > 110)
+                {
+                    anim.Play("Flipped Idle Halv Back");
+
+                }
 
 
             }
-
-
-
-
-
-
         }
-    }
 
+    }
 }
+              

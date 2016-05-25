@@ -48,13 +48,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             RaycastHit hit;
             Vector3 rayDirection = player.transform.position - startVec;
             Debug.DrawRay(transform.position, rayDirection);
-            
 
             if ((Vector3.Angle(rayDirection, startVecFwd)) < 360 && (Vector3.Distance(startVec, player.transform.position) <= 5))
             {
                 return true;
             }
-            
+
             if ((Vector3.Angle(rayDirection, startVecFwd)) < Sight_Width && (Vector3.Distance(startVec, player.transform.position) <= Sight_Range))
                 if (Physics.Raycast(startVec, rayDirection, out hit, 100f))
                 {

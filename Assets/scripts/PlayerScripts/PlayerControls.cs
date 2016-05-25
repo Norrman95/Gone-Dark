@@ -64,7 +64,7 @@ public class PlayerControls : MonoBehaviour
         else
         {
             GetComponent<PlayerStats>().running = false;
-            moveSpeed = 10;
+            moveSpeed = 30f;
         }
 
         if (Input.GetKey(KeyCode.W))

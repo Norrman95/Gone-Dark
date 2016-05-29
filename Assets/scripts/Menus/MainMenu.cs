@@ -93,12 +93,16 @@ public class MainMenu : MonoBehaviour
         {
             if (GUI.Button(new Rect(875, Screen.height / 2 - 120, 150, 25), "New Game"))
             {
-
                 SceneManager.LoadScene("intro scene");
                 started = true;
-
+                loadInv.currentpistolAmmo = 8;
+                loadInv.currentShells = 2;
+                loadInv.totalShells = 10;
+                loadInv.pistolMag = 3;
+                loadInv.blueKeycard = false;
+                loadInv.redKeycard = false;
+                loadInv.yellowKeycard = false;
                 gameObject.SetActive(false);
-
             }
 
            

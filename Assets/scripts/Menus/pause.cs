@@ -81,7 +81,7 @@ public class pause : MonoBehaviour
                 string ConvertedString = i.ToString();
                 getdeath[i] = GameObject.Find("Enemy (" + ConvertedString + ")").GetComponent<KillPlayer>();
 
-                if (getdeath[i].dead && !dead)
+                if (getdeath[i].dead)
                 {
                     Time.timeScale = 0;
                     canpause = false;
@@ -92,7 +92,7 @@ public class pause : MonoBehaviour
 
             }
 
-
+            
         }
 
         if (dead && SceneManager.GetActiveScene().name == "Main Menu")

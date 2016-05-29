@@ -68,7 +68,6 @@ public class PlayerStats : MonoBehaviour
     {
         currentHP = PlayerPrefs.GetInt("currentHP");
         currentStamina = PlayerPrefs.GetInt("currentStamina");
-
         positionX = PlayerPrefs.GetFloat("positionX");
         positionY = PlayerPrefs.GetFloat("positionY");
         positionZ = PlayerPrefs.GetFloat("positionZ");

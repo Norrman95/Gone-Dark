@@ -35,6 +35,11 @@ public class TheEnd : MonoBehaviour
         {
             GUI.Box(new Rect(0, 0, Screen.width, Screen.height), content);
             Time.timeScale = 0;
+
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 2 + 125, 250, 50), "Exit Game To Desktop"))
+            {
+                Application.Quit();
+            }
         }
 
 

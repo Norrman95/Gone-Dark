@@ -6,6 +6,7 @@ public class pause : MonoBehaviour
 {
     bool dead = false;
     public bool paused = false;
+    bool ready = false;
     public bool canpause;
     private GameObject raycube;
     public PlayerStats save;
@@ -15,9 +16,60 @@ public class pause : MonoBehaviour
     FollowPlayer checkRaycube;
     MainMenu hasStarted;
     DoorFunction[] Door = new DoorFunction[4];
-    ItemPickup[] Item = new ItemPickup[2];
-    EnemyStats[] Enemy = new EnemyStats[7];
+    ItemPickup[] Item = new ItemPickup[8];
+    EnemyStats[] Enemy = new EnemyStats[8];
     KillPlayer[] getdeath = new KillPlayer[7];
+
+    void OnLevelWasLoaded(int level)
+    {
+        if (level == 2)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                string ConvertedString = i.ToString();
+                Item[i] = GameObject.Find("Ammo (" + ConvertedString + ")").GetComponent<ItemPickup>();
+            }
+            for (int i = 5; i < 8; i++)
+            {
+                string ConvertedString = i.ToString();
+                Item[i] = GameObject.Find("Card (" + ConvertedString + ")").GetComponent<ItemPickup>();
+            }
+
+            for (int i = 0; i < Door.Length; i++)
+            {
+                string ConvertedString = i.ToString();
+                Door[i] = GameObject.Find("Door (" + ConvertedString + ")").GetComponent<DoorFunction>();
+            }
+
+            for (int i = 0; i < Enemy.Length; i++)
+            {
+                string ConvertedString = i.ToString();
+                Enemy[i] = GameObject.Find("Enemy (" + ConvertedString + ")").GetComponent<EnemyStats>();
+            }
+
+
+
+            for (int i = 0; i < getdeath.Length; i++)
+            {
+                string ConvertedString = i.ToString();
+                getdeath[i] = GameObject.Find("Enemy (" + ConvertedString + ")").GetComponent<KillPlayer>();
+
+                if (getdeath[i].dead)
+                {
+                    Time.timeScale = 0;
+                    canpause = false;
+                    getMouse.enabled = false;
+                    dead = true;
+                    paused = true;
+                }
+                
+            }
+
+
+        }
+    }
+
+
 
 
 
@@ -47,53 +99,13 @@ public class pause : MonoBehaviour
         canpause = true;
         getMouse = GameObject.Find("Player/Rotation").GetComponent<rotation>();
 
-        for (int i = 0; i < 5; i++)
-        {
-            string ConvertedString = i.ToString();
-            Item[i] = GameObject.Find("Ammo (" + ConvertedString + ")").GetComponent<ItemPickup>();
-        }
-        for (int i = 5; i < 8; i++)
-        {
-            string ConvertedString = i.ToString();
-            Item[i] = GameObject.Find("Card (" + ConvertedString + ")").GetComponent<ItemPickup>();
-        }
 
-        for (int i = 0; i < Door.Length; i++)
-        {
-            string ConvertedString = i.ToString();
-            Door[i] = GameObject.Find("Door (" + ConvertedString + ")").GetComponent<DoorFunction>();
-        }
-
-        for (int i = 0; i < Enemy.Length; i++)
-        {
-            string ConvertedString = i.ToString();
-            Enemy[i] = GameObject.Find("Enemy (" + ConvertedString + ")").GetComponent<EnemyStats>();
-        }
     }
 
     void Update()
     {
 
-        if (SceneManager.GetActiveScene().name == "Level 1")
-        {
-            for (int i = 0; i < getdeath.Length; i++)
-            {
-                string ConvertedString = i.ToString();
-                getdeath[i] = GameObject.Find("Enemy (" + ConvertedString + ")").GetComponent<KillPlayer>();
-
-                if (getdeath[i].dead)
-                {
-                    Time.timeScale = 0;
-                    canpause = false;
-                    getMouse.enabled = false;
-                    dead = true;
-                    paused = true;
-                }
-
-            }
-
-            
-        }
+     
 
         if (dead && SceneManager.GetActiveScene().name == "Main Menu")
         {
@@ -137,6 +149,7 @@ public class pause : MonoBehaviour
         hasStarted.started = false;
     }
 
+
     void OnGUI()
     {
         if (!canpause && SceneManager.GetActiveScene().name != "Main Menu" && !dead)
@@ -157,6 +170,11 @@ public class pause : MonoBehaviour
 
                 save.SaveInfo();
                 savInv.SaveInventory();
+                for (int i = 0; i < Enemy.Length; i++)
+                {
+                    Enemy[i].saveEnemystatus(i);
+                }
+
                 for (int i = 0; i < Item.Length; i++)
                 {
                     Item[i].saveItemstatus(i);
@@ -165,10 +183,9 @@ public class pause : MonoBehaviour
                 {
                     Door[i].saveDoorstatus(i);
                 }
-                for (int i = 0; i < Enemy.Length; i++)
-                {
-                    Enemy[i].saveEnemystatus(i);
-                }
+
+
+
 
             }
 

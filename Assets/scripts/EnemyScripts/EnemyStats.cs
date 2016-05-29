@@ -12,19 +12,18 @@ public class EnemyStats : MonoBehaviour
         
     }
 
-    
-
-
-
     public void saveEnemystatus(int i)
     {
-        PlayerPrefs.SetInt("currentHp"+ i, currentHp);
+        PlayerPrefs.SetInt("currentHp" + i, currentHp);
+        PlayerPrefs.SetInt("Killed" + i, (Killed ? 1 : 0));
     }
 
     public void loadEnemystatus(int i)
     {
-        currentHp = (PlayerPrefs.GetInt("currentHp"+ i));
+        currentHp = (PlayerPrefs.GetInt("currentHp" + i));
+        Killed = (PlayerPrefs.GetInt("Killed" + i) != 0);
     }
+
 
     public void AdjustHealth(int newHp)
     {
